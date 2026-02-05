@@ -1,158 +1,180 @@
-<!DOCTYPE html><html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SKA Hosting Network</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
-<style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:'Orbitron',sans-serif;
-  background:url('beaa776788318ffa9adf475282e18bb5.gif') no-repeat center center fixed;
-  background-size:cover;
-  color:#e5faff;
-}
-header{
-  padding:25px;
-  text-align:center;
-  background:rgba(0,0,0,0.6);
-  border-bottom:2px solid cyan;
-  box-shadow:0 0 15px cyan;
-}
-header h1{
-  margin:0;
-  color:cyan;
-  text-shadow:0 0 10px cyan;
-}
-.search-box{
-  max-width:900px;
-  margin:20px auto;
-}
-.search-box input{
-  width:100%;
-  padding:14px;
-  border-radius:10px;
-  border:1px solid cyan;
-  background:#020617cc;
-  color:white;
-  font-size:16px;
-}
-.container{
-  max-width:900px;
-  margin:auto;
-  padding:20px;
-  display:flex;
-  flex-direction:column;
-  gap:15px;
-}
-.card{
-  width:100%;
-  background:rgba(15,23,42,0.85);
-  border:1px solid cyan;
-  padding:18px 22px;
-  border-radius:14px;
-  cursor:pointer;
-  transition:0.3s;
-  box-shadow:0 0 12px cyan;
-}
-.card:hover{transform:scale(1.02)}
-.card h3{margin:0;color:#00ffff}
-.output{
-  max-width:900px;
-  margin:20px auto;
-  padding:20px;
-  background:#020617ee;
-  border-radius:12px;
-  border:1px solid #00ffff;
-  box-shadow:0 0 15px cyan;
-  display:none;
-}
-pre{white-space:pre-wrap;font-family:monospace;font-size:14px}
-button{
-  margin-top:15px;
-  padding:10px 16px;
-  border:none;
-  border-radius:8px;
-  background:cyan;
-  color:black;
-  font-weight:bold;
-  cursor:pointer;
-}
-footer{
-  margin-top:40px;
-  padding:15px;
-  text-align:center;
-  background:rgba(0,0,0,0.6);
-  border-top:2px solid cyan;
-  box-shadow:0 0 15px cyan;
-}
-footer span{color:cyan}
-</style>
-</head>
-<body><header>
-  <h1>WELCOME MY HOSTING NETWORK</h1>
-</header><div class="search-box">
-  <input type="text" id="search" placeholder="Search panel..." onkeyup="filterCards()">
-</div><div class="container" id="cards"></div><div class="output" id="output">
-  <pre id="typed"></pre>
-  <button onclick="copyText()">Copy Command</button>
-  <button onclick="openGuide()">Guide Video</button>
-</div><footer>
-  Credits: <span>Jishnu Bhi</span> | <span>Hoping Boyz</span> | <span>Nobita Hosting</span> | <span>Myhim Bhi</span>
-</footer><script>
-const panels=[
-{
- title:'Hydra Dashboard',
- text:`Hydra Dashboard\n\ndash+panel install:\n1. sudo su\n2. bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/dashboard/refs/heads/main/dash)\n\nNode install:\n1. git clone https://github.com/hydralabs-beta/daemon.git\n2. cd daemon\n3. npm i\n4. paste your node configure\n5. pm2 start .\n\nrelaunch dash & panel\n6. pm2 start index\n7. pm2 start daemon`,
- link:'https://youtu.be/iYV1f5FGdqU?si=6fkYy28yjDAyZg4C'
-},
-{
- title:'Hydra Panel',
- text:`PANEL INSTALLATION:\n1. sudo su\n2. apt update\n3. apt upgrade\n4. curl -o install.sh https://hydrenllc.us.kg/installer.txt && chmod +x install.sh && bash install.sh\n\nNODE INSTALLATION:\n1. git clone https://github.com/hydralabs-beta/daemon.git\n2. cd daemon\n3. npm install\n4. node .`,
- link:'https://youtu.be/iYV1f5FGdqU?si=6fkYy28yjDAyZg4C'
-},
-{
- title:'Puffer Panel Setup',
- text:`sudo su\napt update\napt upgrade\nmkdir -p /var/lib/pufferpanel\ndocker volume create pufferpanel-config\ndocker create --name pufferpanel -p 8080:8080 -p 5657:5657 ...\ndocker start pufferpanel`,
- link:'https://youtube.com/playlist?list=PLlqZTveCNnL6zTve1jmD-XlxzNsZzzzHk'
-}
-];
+<script>
+const hydraDash = `
+Hydra Dashboard
 
-const cards=document.getElementById('cards');
-panels.forEach((p,i)=>{
-  const d=document.createElement('div');
-  d.className='card';
-  d.innerHTML=`<h3>➤ ${p.title}</h3>`;
-  d.onclick=()=>showPanel(i);
-  cards.appendChild(d);
-});
+dash+panel install:
 
-let guideLink='';
-function showPanel(i){
-  const out=document.getElementById('output');
-  const typed=document.getElementById('typed');
-  out.style.display='block';
-  typed.textContent='';
-  guideLink=panels[i].link;
-  let t=panels[i].text;
-  let idx=0;
-  const inter=setInterval(()=>{
-    typed.textContent+=t[idx];
-    idx++;
-    if(idx>=t.length) clearInterval(inter);
-  },20);
-  out.scrollIntoView({behavior:'smooth'});
-}
-function copyText(){
-  navigator.clipboard.writeText(document.getElementById('typed').textContent);
-}
-function openGuide(){window.open(guideLink,'_blank');}
-function filterCards(){
-  let q=document.getElementById('search').value.toLowerCase();
-  [...cards.children].forEach(c=>{
-    c.style.display=c.innerText.toLowerCase().includes(q)?'block':'none';
-  });
-}
-</script></body>
-</html>
+1. sudo su
+2. bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/dashboard/refs/heads/main/dash)
+
+Node install:
+
+1. git clone https://github.com/hydralabs-beta/daemon.git
+2. cd daemon
+3. npm i
+4. paste your node configure
+5. pm2 start .
+
+__relaunch dash & panel__
+
+6. pm2 start index
+7. pm2 start daemon
+
+<a class="btn" href="https://youtu.be/iYV1f5FGdqU?si=6fkYy28yjDAyZg4C" target="_blank">
+Guide Video
+</a>
+`;
+
+const hydraPanel = `
+Hydra Panel
+
+PANEL INSTALLATION :
+
+1. sudo su
+2. apt update
+3. apt upgrade
+4. curl -o install.sh https://hydrenllc.us.kg/installer.txt && chmod +x install.sh && bash install.sh
+
+NODE INSTALLATION :
+
+1. Open new terminal (+)
+2. git clone https://github.com/hydralabs-beta/daemon.git
+3. cd daemon
+4. npm install
+5. node .
+
+relaunch panel:
+1. cd panel
+2. sudo su
+3. node .
+
+start node:
+4. new terminal
+5. cd daemon
+6. sudo su
+7. node .
+
+<a class="btn" href="https://youtu.be/iYV1f5FGdqU?si=6fkYy28yjDAyZg4C" target="_blank">
+Guide Video
+</a>
+`;
+
+const puffer1 = `
+Puffer Panel Setup
+
+sudo su
+apt update
+apt upgrade
+
+mkdir -p /var/lib/pufferpanel
+docker volume create pufferpanel-config
+docker create --name pufferpanel -p 8080:8080 -p 5657:5657 -v pufferpanel-config:/etc/pufferpanel -v /var/lib/pufferpanel:/var/lib/pufferpanel -v /var/run/docker.sock:/var/run/docker.sock --restart=on-failure pufferpanel/pufferpanel:latest
+docker start pufferpanel
+docker exec -it pufferpanel /pufferpanel/pufferpanel user add
+
+again start panel:
+docker start pufferpanel
+
+<a class="btn" href="https://youtube.com/playlist?list=PLlqZTveCNnL6zTve1jmD-XlxzNsZzzzHk&si=zN6bWZM7JHpXo4vl" target="_blank">
+Guide Video
+</a>
+`;
+
+const puffer2 = puffer1;
+
+const skyport = `
+Skyport Panel
+
+PANEL INSTALL:
+1. sudo su
+2. bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/panel)
+
+WINGS/NODE INSTALL:
+1. sudo su
+2. bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/wings)
+3. cd skyportd
+4. paste your node configure
+5. pm2 start .
+
+panel open again:
+1. pm2 start index
+2. pm2 start skyportd
+
+<a class="btn" href="https://youtu.be/wDGOeEu6tuI" target="_blank">
+Guide Video
+</a>
+`;
+
+const airlink = `
+Air Link Panel
+
+Command:
+bash <(curl -s https://airlink.jishnu.fun)
+
+<a class="btn" href="https://youtu.be/0O6FZEBs1D0" target="_blank">
+Guide Video
+</a>
+`;
+
+const draco = `
+Draco Panel
+
+install panel:
+1. sudo su
+2. bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/jishnu)
+
+install node:
+3. bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/node)
+4. cd node
+5. paste your configure
+6. node .
+
+restart panel:
+1. cd panel
+2. node .
+
+restart node:
+3. new terminal
+4. cd node
+5. node .
+
+<a class="btn" href="https://youtu.be/H_p9r-j_xv0" target="_blank">
+Guide Video
+</a>
+`;
+
+const otherPanel = `
+Other Panel (Featherpanel etc)
+
+bash <(curl -s https://ptero.nobitapro.online)
+`;
+
+const code247 = `
+24/7 Making Code
+
+1. python3 <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/24-7/refs/heads/main/24)
+2. python3 (if not auto run)
+`;
+
+const xrdp = `
+XRDP (Debian 11/12/13)
+
+bash <(curl -s https://raw.githubusercontent.com/mahimxyzz/Vps/85b6e12c558f8befb318913c38c2e133f80d8ac9/cd/24_7.txt)
+`;
+
+const extraExt = `
+Extra Extensions for Pterodactyl
+
+<a class="btn" href="https://drive.google.com/drive/folders/1OW3mRTdq5lV9q9gy55P2njCvpCcHRTAU" target="_blank">
+Website
+</a>
+
+Step 1:
+Upload files to /var/www/pterodactyl via SFTP
+
+Step 2:
+1. cd /var/www/pterodactyl
+2. bash <(curl -fsSL https://raw.githubusercontent.com/hopingboyz/blueprint/main/addon-installer.sh)
+3. Give input Y
+`;
+</script>
