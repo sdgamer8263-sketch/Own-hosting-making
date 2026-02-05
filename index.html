@@ -5,37 +5,27 @@
 <title>SKA HOSTING</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Orbitron',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif}
 
 body{
-  background:url("beaa776788318ffa9adf475282e18bb5.gif") no-repeat center center fixed;
-  background-size:cover;
+  background:url("sourin.gif") center/cover fixed;
   color:white;
 }
 
-/* HEADER */
 .ska-header{
   text-align:center;
-  padding:30px 10px;
+  padding:30px;
   font-size:28px;
-  letter-spacing:3px;
-  color:#00ffff;
-  background:rgba(0,0,0,0.6);
+  color:cyan;
+  background:rgba(0,0,0,.6);
   border-bottom:2px solid cyan;
-  box-shadow:0 0 20px cyan;
+  box-shadow:0 0 25px cyan;
   text-shadow:0 0 20px cyan;
 }
 
-/* SEARCH */
 .search{
   width:90%;
   max-width:400px;
@@ -50,7 +40,6 @@ body{
   outline:none;
 }
 
-/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -58,83 +47,85 @@ body{
   padding:20px;
 }
 
-/* CARD */
 .card{
-  background:rgba(0,0,0,0.75);
+  background:rgba(0,0,0,.75);
   padding:20px;
   text-align:center;
   border-radius:15px;
   border:1px solid cyan;
   cursor:pointer;
   box-shadow:0 0 15px cyan;
-  transition:0.3s;
+  transition:.3s;
 }
+.card:hover{transform:scale(1.05);box-shadow:0 0 30px cyan}
 
-.card:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 30px cyan;
-}
-
-/* OUTPUT */
 #output{
   margin:20px;
   padding:20px;
-  background:rgba(0,0,0,0.85);
+  background:rgba(0,0,0,.85);
   border-radius:15px;
   border:1px solid cyan;
-  min-height:200px;
   box-shadow:0 0 20px cyan;
+  min-height:200px;
+}
+
+.line{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin:5px 0;
   white-space:pre-wrap;
 }
 
-/* BUTTON */
-.btn{
-  display:inline-block;
-  margin-top:15px;
-  padding:10px 20px;
+.copy{
+  cursor:pointer;
   color:black;
   background:cyan;
-  border-radius:25px;
-  text-decoration:none;
-  box-shadow:0 0 20px cyan;
+  padding:3px 8px;
+  border-radius:8px;
+  font-size:12px;
+  box-shadow:0 0 10px cyan;
 }
 
-/* FOOTER */
+.guide{
+  margin-top:15px;
+  display:inline-block;
+  color:cyan;
+  cursor:pointer;
+  text-shadow:0 0 15px cyan;
+}
+
 .ska-footer{
   margin-top:40px;
   padding:20px;
   text-align:center;
-  background:rgba(0,0,0,0.75);
+  background:rgba(0,0,0,.75);
   border-top:1px solid cyan;
   box-shadow:0 0 15px cyan;
 }
-
-.ska-footer span{
-  color:cyan;
-  text-shadow:0 0 10px cyan;
-}
+.ska-footer span{color:cyan;text-shadow:0 0 10px cyan}
 </style>
 </head>
 
 <body>
 
-<header class="ska-header">
-WELCOME MY HOSTING NETWORK
-</header>
+<header class="ska-header">WELCOME MY HOSTING NETWORK</header>
 
-<input type="text" class="search" id="searchBox" placeholder="🔍 Search Panel..." onkeyup="filterCards()">
+<input class="search" placeholder="🔍 Search Panel..." onkeyup="filterCards()">
 
 <div class="grid">
-  <div class="card" onclick="typeText(hydraDash)">Hydra Dashboard</div>
-  <div class="card" onclick="typeText(hydraPanel)">Hydra Panel</div>
-  <div class="card" onclick="typeText(puffer)">Puffer Panel</div>
-  <div class="card" onclick="typeText(skyport)">Skyport Panel</div>
-  <div class="card" onclick="typeText(airlink)">Air Link Panel</div>
-  <div class="card" onclick="typeText(draco)">Draco Panel</div>
-  <div class="card" onclick="typeText(otherPanel)">Other Panels</div>
-  <div class="card" onclick="typeText(code247)">24/7 Code</div>
-  <div class="card" onclick="typeText(xrdp)">XRDP</div>
-  <div class="card" onclick="typeText(extra)">Extra Extensions</div>
+  <div class="card" onclick="show(hydraDashboard)">Hydra Dashboard</div>
+  <div class="card" onclick="show(hydraPanel)">Hydra Panel</div>
+  <div class="card" onclick="show(puffer)">Puffer Panel</div>
+  <div class="card" onclick="show(puffer2)">Puffer Panel 2</div>
+  <div class="card" onclick="show(skyport)">Skyport Panel</div>
+  <div class="card" onclick="show(airlink)">Air Link Panel</div>
+  <div class="card" onclick="show(draco)">Draco Panel</div>
+  <div class="card" onclick="show(otherPanel)">Other Panels</div>
+  <div class="card" onclick="show(code247)">24/7 Code</div>
+  <div class="card" onclick="show(xrdp)">XRDP</div>
+  <div class="card" onclick="show(extra)">Extra Extensions</div>
 </div>
 
 <div id="output"></div>
@@ -149,109 +140,127 @@ Credits :
 
 <script>
 function filterCards(){
-  let input=document.getElementById("searchBox").value.toLowerCase();
-  document.querySelectorAll(".card").forEach(c=>{
-    c.style.display=c.innerText.toLowerCase().includes(input)?"block":"none";
+  let v=document.querySelector('.search').value.toLowerCase();
+  document.querySelectorAll('.card').forEach(c=>{
+    c.style.display=c.innerText.toLowerCase().includes(v)?"block":"none";
   });
 }
 
-let speed=15;
-function typeText(text){
-  let out=document.getElementById("output");
+function copyText(t){
+  navigator.clipboard.writeText(t);
+}
+
+function show(data){
+  const out=document.getElementById("output");
   out.innerHTML="";
   let i=0;
-  let timer=setInterval(()=>{
-    out.innerHTML+=text.charAt(i);
+  let lines=data.text.split("\n");
+
+  function typeLine(){
+    if(i>=lines.length){
+      if(data.link){
+        out.innerHTML+=`<div class="guide" onclick="window.open('${data.link}','_blank')">▶ Guide Video</div>`;
+      }
+      return;
+    }
+    let line=lines[i];
+    let div=document.createElement("div");
+    div.className="line";
+    let span=document.createElement("span");
+    span.textContent=line;
+    let btn=document.createElement("span");
+    btn.className="copy";
+    btn.textContent="COPY";
+    btn.onclick=()=>copyText(line);
+    div.append(span,btn);
+    out.appendChild(div);
     i++;
-    if(i>=text.length) clearInterval(timer);
-  },speed);
+    setTimeout(typeLine,50);
+  }
+  typeLine();
 }
 
 /* DATA */
-const hydraDash=`Hydra Dashboard
-
+const hydraDashboard={
+text:`Hydra Dashboard
 dash+panel install:
-
-1. sudo su
-2. bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/dashboard/refs/heads/main/dash)
+sudo su
+bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/dashboard/refs/heads/main/dash)
 
 Node install:
+git clone https://github.com/hydralabs-beta/daemon.git
+cd daemon
+npm i
+paste your node configure
+pm2 start .
 
-1. git clone https://github.com/hydralabs-beta/daemon.git
-2. cd daemon
-3. npm i
-4. paste your node configure
-5. pm2 start .
-
-relaunch:
+relaunch dash & panel
 pm2 start index
-pm2 start daemon
+pm2 start daemon`,
+link:"https://youtu.be/iYV1f5FGdqU?si=6fkYy28yjDAyZg4C"
+};
 
-Guide Video:
-https://youtu.be/iYV1f5FGdqU
-`;
+const hydraPanel={
+text:`Hydra Panel
+sudo su
+apt update
+apt upgrade
+curl -o install.sh https://hydrenllc.us.kg/installer.txt && chmod +x install.sh && bash install.sh`,
+link:"https://youtu.be/iYV1f5FGdqU?si=6fkYy28yjDAyZg4C"
+};
 
-const hydraPanel=`Hydra Panel
+const puffer={
+text:`Puffer Panel Setup
+sudo su
+apt update
+apt upgrade
+docker start pufferpanel`,
+link:"https://youtube.com/playlist?list=PLlqZTveCNnL6zTve1jmD-XlxzNsZzzzHk"
+};
 
-curl -o install.sh https://hydrenllc.us.kg/installer.txt && chmod +x install.sh && bash install.sh
+const puffer2=puffer;
 
-Guide Video:
-https://youtu.be/iYV1f5FGdqU
-`;
-
-const puffer=`Puffer Panel Setup
-
-docker create pufferpanel
-docker start pufferpanel
-
-Guide Video:
-https://youtube.com/playlist?list=PLlqZTveCNnL6zTve1jmD-XlxzNsZzzzHk
-`;
-
-const skyport=`Skyport Panel
-
+const skyport={
+text:`Skyport Panel
 bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/panel)
+bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/wings)`,
+link:"https://youtu.be/wDGOeEu6tuI"
+};
 
-Guide Video:
-https://youtu.be/wDGOeEu6tuI
-`;
+const airlink={
+text:`Air Link Panel
+bash <(curl -s https://airlink.jishnu.fun)`,
+link:"https://youtu.be/0O6FZEBs1D0"
+};
 
-const airlink=`Air Link Panel
-
-bash <(curl -s https://airlink.jishnu.fun)
-
-Guide Video:
-https://youtu.be/0O6FZEBs1D0
-`;
-
-const draco=`Draco Panel
-
+const draco={
+text:`Draco Panel
 bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/jishnu)
+bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/node)`,
+link:"https://youtu.be/H_p9r-j_xv0"
+};
 
-Guide Video:
-https://youtu.be/H_p9r-j_xv0
-`;
+const otherPanel={
+text:`Other Panels
+bash <(curl -s https://ptero.nobitapro.online)`
+};
 
-const otherPanel=`Other Panels
+const code247={
+text:`24/7 Making Code
+python3 <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/24-7/refs/heads/main/24)`
+};
 
-bash <(curl -s https://ptero.nobitapro.online)
-`;
+const xrdp={
+text:`XRDP
+bash <(curl -s https://raw.githubusercontent.com/mahimxyzz/Vps/85b6e12c558f8befb318913c38c2e133f80d8ac9/cd/24_7.txt)`
+};
 
-const code247=`24/7 Making Code
-
-python3 <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/24-7/refs/heads/main/24)
-`;
-
-const xrdp=`XRDP Debian
-
-bash <(curl -s https://raw.githubusercontent.com/mahimxyzz/Vps/85b6e12c558f8befb318913c38c2e133f80d8ac9/cd/24_7.txt)
-`;
-
-const extra=`Extra Extensions
-
-Website:
-https://drive.google.com/drive/folders/1OW3mRTdq5lV9q9gy55P2njCvpCcHRTAU
-`;
+const extra={
+text:`Extra Extensions
+Upload files to /var/www/pterodactyl
+bash <(curl -fsSL https://raw.githubusercontent.com/hopingboyz/blueprint/main/addon-installer.sh)`,
+link:"https://drive.google.com/drive/folders/1OW3mRTdq5lV9q9gy55P2njCvpCcHRTAU"
+};
 </script>
 
 </body>
