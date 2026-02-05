@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>OWN HOSTING MAKING</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: white;
+  }
+
+  header {
+    padding: 20px;
+    text-align: center;
+    background: #020617;
+  }
+
+  .container {
+    padding: 40px;
+    max-width: 900px;
+    margin: auto;
+  }
+
+  .card {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .card:hover {
+    background: #334155;
+  }
+
+  .output {
+    margin-top: 30px;
+    background: black;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: monospace;
+    display: none;
+    white-space: pre-line;
+  }
+
+  a {
+    color: #38bdf8;
+    text-decoration: none;
+  }
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>OWN HOSTING MAKING</h1>
+</header>
+
+<div class="container">
+  <div class="card" onclick="startTyping()">
+    <h2>Pterodactyl Panel</h2>
+    <p>VM making + Wings & Panel Installation Guide</p>
+  </div>
+
+  <div id="output" class="output"></div>
+</div>
+
+<script>
+const text = `
+First Command:-
+
+bash <(curl -s https://vps1.jishnu.fun)
+
+Second Command:-
+
+bash <(curl -s https://ptero.jishnu.fun)
+
+Youtube Video (credit JISHNU BHI) for guidance:
+https://youtu.be/VyJmVDnV3f0?si=VG7iLIWtaKJnbdZZ
+`;
+
+let i = 0;
+
+function startTyping() {
+  const output = document.getElementById("output");
+  output.style.display = "block";
+  output.innerHTML = "";
+  i = 0;
+
+  const interval = setInterval(() => {
+    output.innerHTML += text.charAt(i);
+    i++;
+    if (i >= text.length) clearInterval(interval);
+  }, 40); // typing speed
+}
+</script>
+
+</body>
+</html>
