@@ -1,284 +1,158 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>SKA HOSTING</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SKA Hosting Network</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
-
 <style>
 *{box-sizing:border-box}
-
 body{
   margin:0;
   font-family:'Orbitron',sans-serif;
-  background:url("beaa776788318ffa9adf475282e18bb5.gif") no-repeat center center fixed;
+  background:url('beaa776788318ffa9adf475282e18bb5.gif') no-repeat center center fixed;
   background-size:cover;
-  color:white;
+  color:#e5faff;
 }
-
-.overlay{
-  min-height:100vh;
-  background:rgba(0,0,0,0.7);
-}
-
-/* ===== HEADER ===== */
-.ska-header{
+header{
+  padding:25px;
   text-align:center;
-  padding:30px 10px;
-  font-size:30px;
-  letter-spacing:3px;
-  color:#00ffff;
   background:rgba(0,0,0,0.6);
   border-bottom:2px solid cyan;
-  box-shadow:0 0 20px cyan;
-  text-shadow:0 0 5px cyan,0 0 15px cyan,0 0 30px cyan;
-}
-
-/* ===== SEARCH ===== */
-.search{
-  width:100%;
-  max-width:420px;
-  display:block;
-  margin:25px auto 10px;
-  padding:12px 18px;
-  border-radius:30px;
-  border:1px solid cyan;
-  outline:none;
-  font-family:'Orbitron',sans-serif;
-  background:black;
-  color:white;
   box-shadow:0 0 15px cyan;
 }
-.search::placeholder{color:#7dd3fc}
-
-/* ===== CARDS ===== */
-.container{
-  max-width:1200px;
-  margin:auto;
-  padding:20px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:15px;
-}
-
-.card{
-  background:rgba(15,23,42,0.85);
-  border:1px solid cyan;
-  padding:18px;
-  border-radius:12px;
-  text-align:center;
-  cursor:pointer;
-  transition:0.3s;
-  box-shadow:0 0 10px cyan;
-}
-
-.card:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 25px cyan,0 0 50px cyan;
-}
-
-/* ===== OUTPUT ===== */
-.output{
-  max-width:1200px;
-  margin:20px auto;
-  background:black;
-  padding:20px;
-  border-radius:10px;
-  display:none;
-  white-space:pre-line;
-  font-family:monospace;
-  box-shadow:0 0 25px cyan;
-}
-
-.command{
-  background:#020617;
-  padding:10px;
-  border-radius:6px;
-  margin:10px 0;
-  position:relative;
-}
-
-.copy-btn{
-  position:absolute;
-  right:10px;
-  top:8px;
-  background:cyan;
-  border:none;
-  padding:4px 10px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-a.btn{
-  display:inline-block;
-  margin-top:15px;
-  padding:10px 20px;
-  border:1px solid cyan;
-  border-radius:30px;
-  color:white;
-  text-decoration:none;
-  box-shadow:0 0 15px cyan;
-}
-a.btn:hover{background:cyan;color:black}
-
-/* ===== FOOTER ===== */
-.ska-footer{
-  margin-top:50px;
-  padding:20px;
-  text-align:center;
-  font-size:14px;
-  background:rgba(0,0,0,0.75);
-  border-top:1px solid cyan;
-  box-shadow:0 0 15px cyan;
-}
-.ska-footer span{
-  color:#00ffff;
+header h1{
+  margin:0;
+  color:cyan;
   text-shadow:0 0 10px cyan;
 }
+.search-box{
+  max-width:900px;
+  margin:20px auto;
+}
+.search-box input{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:1px solid cyan;
+  background:#020617cc;
+  color:white;
+  font-size:16px;
+}
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+.card{
+  width:100%;
+  background:rgba(15,23,42,0.85);
+  border:1px solid cyan;
+  padding:18px 22px;
+  border-radius:14px;
+  cursor:pointer;
+  transition:0.3s;
+  box-shadow:0 0 12px cyan;
+}
+.card:hover{transform:scale(1.02)}
+.card h3{margin:0;color:#00ffff}
+.output{
+  max-width:900px;
+  margin:20px auto;
+  padding:20px;
+  background:#020617ee;
+  border-radius:12px;
+  border:1px solid #00ffff;
+  box-shadow:0 0 15px cyan;
+  display:none;
+}
+pre{white-space:pre-wrap;font-family:monospace;font-size:14px}
+button{
+  margin-top:15px;
+  padding:10px 16px;
+  border:none;
+  border-radius:8px;
+  background:cyan;
+  color:black;
+  font-weight:bold;
+  cursor:pointer;
+}
+footer{
+  margin-top:40px;
+  padding:15px;
+  text-align:center;
+  background:rgba(0,0,0,0.6);
+  border-top:2px solid cyan;
+  box-shadow:0 0 15px cyan;
+}
+footer span{color:cyan}
 </style>
 </head>
-
-<body>
-<div class="overlay">
-
-<header class="ska-header">
-  WELCOME MY HOSTING NETWORK
-</header>
-
-<input class="search" id="searchBox" placeholder="🔍 Search Panel..." onkeyup="filterCards()">
-
-<div class="container">
-  <div class="card" onclick="typeText(ptero)">Pterodactyl Panel</div>
-  <div class="card" onclick="typeText(hydraDash)">Hydra Dashboard</div>
-  <div class="card" onclick="typeText(hydraPanel)">Hydra Panel</div>
-  <div class="card" onclick="typeText(puffer)">Puffer Panel</div>
-  <div class="card" onclick="typeText(skyport)">Skyport Panel</div>
-  <div class="card" onclick="typeText(airlink)">Air Link Panel</div>
-  <div class="card" onclick="typeText(draco)">Draco Panel</div>
-  <div class="card" onclick="typeText(extra)">Extra Extensions</div>
-</div>
-
-<div id="output" class="output"></div>
-
-<footer class="ska-footer">
-  Credits :
-  <span>Jishnu Bhi</span> •
-  <span>Hoping Boyz</span> •
-  <span>Nobita Hosting</span> •
-  <span>Myhim Bhi</span>
-</footer>
-
-</div>
-
-<script>
-let timer;
-
-function copyText(txt){
-  navigator.clipboard.writeText(txt);
-  alert("Copied!");
+<body><header>
+  <h1>WELCOME MY HOSTING NETWORK</h1>
+</header><div class="search-box">
+  <input type="text" id="search" placeholder="Search panel..." onkeyup="filterCards()">
+</div><div class="container" id="cards"></div><div class="output" id="output">
+  <pre id="typed"></pre>
+  <button onclick="copyText()">Copy Command</button>
+  <button onclick="openGuide()">Guide Video</button>
+</div><footer>
+  Credits: <span>Jishnu Bhi</span> | <span>Hoping Boyz</span> | <span>Nobita Hosting</span> | <span>Myhim Bhi</span>
+</footer><script>
+const panels=[
+{
+ title:'Hydra Dashboard',
+ text:`Hydra Dashboard\n\ndash+panel install:\n1. sudo su\n2. bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/dashboard/refs/heads/main/dash)\n\nNode install:\n1. git clone https://github.com/hydralabs-beta/daemon.git\n2. cd daemon\n3. npm i\n4. paste your node configure\n5. pm2 start .\n\nrelaunch dash & panel\n6. pm2 start index\n7. pm2 start daemon`,
+ link:'https://youtu.be/iYV1f5FGdqU?si=6fkYy28yjDAyZg4C'
+},
+{
+ title:'Hydra Panel',
+ text:`PANEL INSTALLATION:\n1. sudo su\n2. apt update\n3. apt upgrade\n4. curl -o install.sh https://hydrenllc.us.kg/installer.txt && chmod +x install.sh && bash install.sh\n\nNODE INSTALLATION:\n1. git clone https://github.com/hydralabs-beta/daemon.git\n2. cd daemon\n3. npm install\n4. node .`,
+ link:'https://youtu.be/iYV1f5FGdqU?si=6fkYy28yjDAyZg4C'
+},
+{
+ title:'Puffer Panel Setup',
+ text:`sudo su\napt update\napt upgrade\nmkdir -p /var/lib/pufferpanel\ndocker volume create pufferpanel-config\ndocker create --name pufferpanel -p 8080:8080 -p 5657:5657 ...\ndocker start pufferpanel`,
+ link:'https://youtube.com/playlist?list=PLlqZTveCNnL6zTve1jmD-XlxzNsZzzzHk'
 }
+];
 
-function typeText(content){
-  const out=document.getElementById("output");
-  out.style.display="block";
-  out.innerHTML="";
-  clearInterval(timer);
-  let i=0;
-  timer=setInterval(()=>{
-    out.innerHTML=content.slice(0,i);
-    i++;
-    if(i>content.length) clearInterval(timer);
-  },15);
+const cards=document.getElementById('cards');
+panels.forEach((p,i)=>{
+  const d=document.createElement('div');
+  d.className='card';
+  d.innerHTML=`<h3>➤ ${p.title}</h3>`;
+  d.onclick=()=>showPanel(i);
+  cards.appendChild(d);
+});
+
+let guideLink='';
+function showPanel(i){
+  const out=document.getElementById('output');
+  const typed=document.getElementById('typed');
+  out.style.display='block';
+  typed.textContent='';
+  guideLink=panels[i].link;
+  let t=panels[i].text;
+  let idx=0;
+  const inter=setInterval(()=>{
+    typed.textContent+=t[idx];
+    idx++;
+    if(idx>=t.length) clearInterval(inter);
+  },20);
+  out.scrollIntoView({behavior:'smooth'});
 }
-
+function copyText(){
+  navigator.clipboard.writeText(document.getElementById('typed').textContent);
+}
+function openGuide(){window.open(guideLink,'_blank');}
 function filterCards(){
-  const val=document.getElementById("searchBox").value.toLowerCase();
-  document.querySelectorAll(".card").forEach(c=>{
-    c.style.display=c.innerText.toLowerCase().includes(val)?"block":"none";
+  let q=document.getElementById('search').value.toLowerCase();
+  [...cards.children].forEach(c=>{
+    c.style.display=c.innerText.toLowerCase().includes(q)?'block':'none';
   });
 }
-
-/* ===== CONTENT ===== */
-const ptero=`
-First Command:
-<div class="command">
-bash <(curl -s https://vps1.jishnu.fun)
-<button class="copy-btn" onclick="copyText('bash <(curl -s https://vps1.jishnu.fun)')">COPY</button>
-</div>
-
-Second Command:
-<div class="command">
-bash <(curl -s https://ptero.jishnu.fun)
-<button class="copy-btn" onclick="copyText('bash <(curl -s https://ptero.jishnu.fun)')">COPY</button>
-</div>
-
-<a class="btn" href="https://youtu.be/VyJmVDnV3f0" target="_blank">
-Guide Video (Credit By JISHNU BHI)
-</a>
-`;
-
-const hydraDash=`
-Hydra Dashboard
-<div class="command">
-bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/dashboard/refs/heads/main/dash)
-<button class="copy-btn" onclick="copyText('bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/dashboard/refs/heads/main/dash)')">COPY</button>
-</div>
-<a class="btn" href="https://youtu.be/iYV1f5FGdqU" target="_blank">Guide Video</a>
-`;
-
-const hydraPanel=`
-Hydra Panel
-<div class="command">
-curl -o install.sh https://hydrenllc.us.kg/installer.txt && chmod +x install.sh && bash install.sh
-<button class="copy-btn" onclick="copyText('curl -o install.sh https://hydrenllc.us.kg/installer.txt && chmod +x install.sh && bash install.sh')">COPY</button>
-</div>
-<a class="btn" href="https://youtu.be/iYV1f5FGdqU" target="_blank">Guide Video</a>
-`;
-
-const puffer=`
-Puffer Panel
-<div class="command">
-docker start pufferpanel
-<button class="copy-btn" onclick="copyText('docker start pufferpanel')">COPY</button>
-</div>
-<a class="btn" href="https://youtube.com/playlist?list=PLlqZTveCNnL6zTve1jmD-XlxzNsZzzzHk" target="_blank">Guide Playlist</a>
-`;
-
-const skyport=`
-Skyport Panel
-<div class="command">
-bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/panel)
-<button class="copy-btn" onclick="copyText('bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/panel)')">COPY</button>
-</div>
-<a class="btn" href="https://youtu.be/wDGOeEu6tuI" target="_blank">Guide Video</a>
-`;
-
-const airlink=`
-Air Link Panel
-<div class="command">
-bash <(curl -s https://airlink.jishnu.fun)
-<button class="copy-btn" onclick="copyText('bash <(curl -s https://airlink.jishnu.fun)')">COPY</button>
-</div>
-<a class="btn" href="https://youtu.be/0O6FZEBs1D0" target="_blank">Guide Video</a>
-`;
-
-const draco=`
-Draco Panel
-<div class="command">
-bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/jishnu)
-<button class="copy-btn" onclick="copyText('bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/jishnu)')">COPY</button>
-</div>
-<a class="btn" href="https://youtu.be/H_p9r-j_xv0" target="_blank">Guide Video</a>
-`;
-
-const extra=`
-Extra Extensions
-<a class="btn" href="https://drive.google.com/drive/folders/1OW3mRTdq5lV9q9gy55P2njCvpCcHRTAU" target="_blank">
-Open Website
-</a>
-`;
-</script>
-
-</body>
+</script></body>
 </html>
