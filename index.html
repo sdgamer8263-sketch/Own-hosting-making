@@ -2,100 +2,282 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>OWN HOSTING MAKING</title>
+<title>SKA HOSTING</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0f172a;
-    color: white;
-  }
+*{box-sizing:border-box}
 
-  header {
-    padding: 20px;
-    text-align: center;
-    background: #020617;
-  }
+body{
+  margin:0;
+  font-family:'Orbitron',sans-serif;
+  background:url("sourin.gif") no-repeat center center fixed;
+  background-size:cover;
+  color:white;
+}
 
-  .container {
-    padding: 40px;
-    max-width: 900px;
-    margin: auto;
-  }
+.overlay{
+  min-height:100vh;
+  background:rgba(0,0,0,0.7);
+}
 
-  .card {
-    background: #1e293b;
-    padding: 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
+/* ===== HEADER ===== */
+.ska-header{
+  text-align:center;
+  padding:30px 10px;
+  font-size:30px;
+  letter-spacing:3px;
+  color:#00ffff;
+  background:rgba(0,0,0,0.6);
+  border-bottom:2px solid cyan;
+  box-shadow:0 0 20px cyan;
+  text-shadow:0 0 5px cyan,0 0 15px cyan,0 0 30px cyan;
+}
 
-  .card:hover {
-    background: #334155;
-  }
+/* ===== SEARCH ===== */
+.search{
+  width:100%;
+  max-width:420px;
+  display:block;
+  margin:25px auto 10px;
+  padding:12px 18px;
+  border-radius:30px;
+  border:1px solid cyan;
+  outline:none;
+  font-family:'Orbitron',sans-serif;
+  background:black;
+  color:white;
+  box-shadow:0 0 15px cyan;
+}
+.search::placeholder{color:#7dd3fc}
 
-  .output {
-    margin-top: 30px;
-    background: black;
-    padding: 20px;
-    border-radius: 10px;
-    font-family: monospace;
-    display: none;
-    white-space: pre-line;
-  }
+/* ===== CARDS ===== */
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+}
 
-  a {
-    color: #38bdf8;
-    text-decoration: none;
-  }
+.card{
+  background:rgba(15,23,42,0.85);
+  border:1px solid cyan;
+  padding:18px;
+  border-radius:12px;
+  text-align:center;
+  cursor:pointer;
+  transition:0.3s;
+  box-shadow:0 0 10px cyan;
+}
+
+.card:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 25px cyan,0 0 50px cyan;
+}
+
+/* ===== OUTPUT ===== */
+.output{
+  max-width:1200px;
+  margin:20px auto;
+  background:black;
+  padding:20px;
+  border-radius:10px;
+  display:none;
+  white-space:pre-line;
+  font-family:monospace;
+  box-shadow:0 0 25px cyan;
+}
+
+.command{
+  background:#020617;
+  padding:10px;
+  border-radius:6px;
+  margin:10px 0;
+  position:relative;
+}
+
+.copy-btn{
+  position:absolute;
+  right:10px;
+  top:8px;
+  background:cyan;
+  border:none;
+  padding:4px 10px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+a.btn{
+  display:inline-block;
+  margin-top:15px;
+  padding:10px 20px;
+  border:1px solid cyan;
+  border-radius:30px;
+  color:white;
+  text-decoration:none;
+  box-shadow:0 0 15px cyan;
+}
+a.btn:hover{background:cyan;color:black}
+
+/* ===== FOOTER ===== */
+.ska-footer{
+  margin-top:50px;
+  padding:20px;
+  text-align:center;
+  font-size:14px;
+  background:rgba(0,0,0,0.75);
+  border-top:1px solid cyan;
+  box-shadow:0 0 15px cyan;
+}
+.ska-footer span{
+  color:#00ffff;
+  text-shadow:0 0 10px cyan;
+}
 </style>
 </head>
 
 <body>
+<div class="overlay">
 
-<header>
-  <h1>OWN HOSTING MAKING</h1>
+<header class="ska-header">
+  WELCOME MY HOSTING NETWORK
 </header>
 
-<div class="container">
-  <div class="card" onclick="startTyping()">
-    <h2>Pterodactyl Panel</h2>
-    <p>VM making + Wings & Panel Installation Guide</p>
-  </div>
+<input class="search" id="searchBox" placeholder="🔍 Search Panel..." onkeyup="filterCards()">
 
-  <div id="output" class="output"></div>
+<div class="container">
+  <div class="card" onclick="typeText(ptero)">Pterodactyl Panel</div>
+  <div class="card" onclick="typeText(hydraDash)">Hydra Dashboard</div>
+  <div class="card" onclick="typeText(hydraPanel)">Hydra Panel</div>
+  <div class="card" onclick="typeText(puffer)">Puffer Panel</div>
+  <div class="card" onclick="typeText(skyport)">Skyport Panel</div>
+  <div class="card" onclick="typeText(airlink)">Air Link Panel</div>
+  <div class="card" onclick="typeText(draco)">Draco Panel</div>
+  <div class="card" onclick="typeText(extra)">Extra Extensions</div>
+</div>
+
+<div id="output" class="output"></div>
+
+<footer class="ska-footer">
+  Credits :
+  <span>Jishnu Bhi</span> •
+  <span>Hoping Boyz</span> •
+  <span>Nobita Hosting</span> •
+  <span>Myhim Bhi</span>
+</footer>
+
 </div>
 
 <script>
-const text = `
-First Command:-
+let timer;
 
+function copyText(txt){
+  navigator.clipboard.writeText(txt);
+  alert("Copied!");
+}
+
+function typeText(content){
+  const out=document.getElementById("output");
+  out.style.display="block";
+  out.innerHTML="";
+  clearInterval(timer);
+  let i=0;
+  timer=setInterval(()=>{
+    out.innerHTML=content.slice(0,i);
+    i++;
+    if(i>content.length) clearInterval(timer);
+  },15);
+}
+
+function filterCards(){
+  const val=document.getElementById("searchBox").value.toLowerCase();
+  document.querySelectorAll(".card").forEach(c=>{
+    c.style.display=c.innerText.toLowerCase().includes(val)?"block":"none";
+  });
+}
+
+/* ===== CONTENT ===== */
+const ptero=`
+First Command:
+<div class="command">
 bash <(curl -s https://vps1.jishnu.fun)
+<button class="copy-btn" onclick="copyText('bash <(curl -s https://vps1.jishnu.fun)')">COPY</button>
+</div>
 
-Second Command:-
-
+Second Command:
+<div class="command">
 bash <(curl -s https://ptero.jishnu.fun)
+<button class="copy-btn" onclick="copyText('bash <(curl -s https://ptero.jishnu.fun)')">COPY</button>
+</div>
 
-Youtube Video (credit JISHNU BHI) for guidance:
-https://youtu.be/VyJmVDnV3f0?si=VG7iLIWtaKJnbdZZ
+<a class="btn" href="https://youtu.be/VyJmVDnV3f0" target="_blank">
+Guide Video (Credit By JISHNU BHI)
+</a>
 `;
 
-let i = 0;
+const hydraDash=`
+Hydra Dashboard
+<div class="command">
+bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/dashboard/refs/heads/main/dash)
+<button class="copy-btn" onclick="copyText('bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/dashboard/refs/heads/main/dash)')">COPY</button>
+</div>
+<a class="btn" href="https://youtu.be/iYV1f5FGdqU" target="_blank">Guide Video</a>
+`;
 
-function startTyping() {
-  const output = document.getElementById("output");
-  output.style.display = "block";
-  output.innerHTML = "";
-  i = 0;
+const hydraPanel=`
+Hydra Panel
+<div class="command">
+curl -o install.sh https://hydrenllc.us.kg/installer.txt && chmod +x install.sh && bash install.sh
+<button class="copy-btn" onclick="copyText('curl -o install.sh https://hydrenllc.us.kg/installer.txt && chmod +x install.sh && bash install.sh')">COPY</button>
+</div>
+<a class="btn" href="https://youtu.be/iYV1f5FGdqU" target="_blank">Guide Video</a>
+`;
 
-  const interval = setInterval(() => {
-    output.innerHTML += text.charAt(i);
-    i++;
-    if (i >= text.length) clearInterval(interval);
-  }, 40); // typing speed
-}
+const puffer=`
+Puffer Panel
+<div class="command">
+docker start pufferpanel
+<button class="copy-btn" onclick="copyText('docker start pufferpanel')">COPY</button>
+</div>
+<a class="btn" href="https://youtube.com/playlist?list=PLlqZTveCNnL6zTve1jmD-XlxzNsZzzzHk" target="_blank">Guide Playlist</a>
+`;
+
+const skyport=`
+Skyport Panel
+<div class="command">
+bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/panel)
+<button class="copy-btn" onclick="copyText('bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/panel)')">COPY</button>
+</div>
+<a class="btn" href="https://youtu.be/wDGOeEu6tuI" target="_blank">Guide Video</a>
+`;
+
+const airlink=`
+Air Link Panel
+<div class="command">
+bash <(curl -s https://airlink.jishnu.fun)
+<button class="copy-btn" onclick="copyText('bash <(curl -s https://airlink.jishnu.fun)')">COPY</button>
+</div>
+<a class="btn" href="https://youtu.be/0O6FZEBs1D0" target="_blank">Guide Video</a>
+`;
+
+const draco=`
+Draco Panel
+<div class="command">
+bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/jishnu)
+<button class="copy-btn" onclick="copyText('bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/jishnu)')">COPY</button>
+</div>
+<a class="btn" href="https://youtu.be/H_p9r-j_xv0" target="_blank">Guide Video</a>
+`;
+
+const extra=`
+Extra Extensions
+<a class="btn" href="https://drive.google.com/drive/folders/1OW3mRTdq5lV9q9gy55P2njCvpCcHRTAU" target="_blank">
+Open Website
+</a>
+`;
 </script>
 
 </body>
