@@ -8,30 +8,24 @@
 <style>
 body{
   margin:0;
-  font-family: 'Segoe UI', monospace;
-  background: url("beaa776788318ffa9adf475282e18bb5.gif") center/cover fixed no-repeat;
-  color:#0ff;
+  font-family: Consolas, monospace;
+  background:url("beaa776788318ffa9adf475282e18bb5.gif") center/cover fixed no-repeat;
+  color:#00ffff;
 }
-
 header{
-  text-align:center;
   padding:20px;
-  font-size:24px;
-  background:rgba(0,0,0,.6);
+  text-align:center;
+  background:rgba(0,0,0,.7);
   box-shadow:0 0 20px cyan;
 }
+header h1{margin:0;}
 
-header h1{margin:0;color:#0ff;}
-
-.search{
-  padding:10px;
-  text-align:center;
-}
+.search{padding:10px;text-align:center;}
 .search input{
   width:90%;
   padding:10px;
+  border-radius:10px;
   border:none;
-  border-radius:8px;
   outline:none;
 }
 
@@ -45,7 +39,7 @@ header h1{margin:0;color:#0ff;}
 .card{
   background:rgba(0,0,0,.65);
   padding:15px;
-  border-radius:12px;
+  border-radius:14px;
   text-align:center;
   cursor:pointer;
   box-shadow:0 0 15px cyan;
@@ -53,36 +47,33 @@ header h1{margin:0;color:#0ff;}
 }
 .card:hover{transform:scale(1.05);}
 
-#output{
-  padding:15px;
-  white-space:pre-wrap;
-}
+#output{padding:15px;white-space:pre-wrap;}
 
 .line{
   display:flex;
   justify-content:space-between;
   gap:10px;
-  margin-bottom:4px;
 }
-
 .copy{
-  background:#0ff;
+  background:#00ffff;
   border:none;
-  padding:2px 6px;
   border-radius:6px;
+  padding:2px 6px;
   cursor:pointer;
 }
 
 .guide,.website{
-  color:#0ff;
-  cursor:pointer;
+  color:#00ffff;
   text-decoration:underline;
+  cursor:pointer;
+  margin-top:10px;
+  display:inline-block;
 }
 
 footer{
-  text-align:center;
   padding:15px;
-  background:rgba(0,0,0,.6);
+  text-align:center;
+  background:rgba(0,0,0,.7);
   box-shadow:0 0 20px cyan inset;
 }
 </style>
@@ -95,11 +86,10 @@ footer{
 </header>
 
 <div class="search">
-<input id="search" placeholder="🔍 Search panels..." onkeyup="filterCards()">
+<input id="search" placeholder="🔍 Search / filter panels..." onkeyup="filterCards()">
 </div>
 
 <div class="grid" id="cards"></div>
-
 <div id="output"></div>
 
 <footer>
@@ -107,13 +97,14 @@ Credits: Jishnu Bhi • Hoping Boyz • Nobita Hosting • Myhim Bhi
 </footer>
 
 <script>
-const panels = [
+const panels=[
+
+// 1
 {
 name:"Hydra Dashboard",
 text:`Hydra Dashboard
 
 dash+panel install:
-
 1. sudo su
 2. bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/dashboard/refs/heads/main/dash)
 
@@ -130,6 +121,7 @@ relaunch dash & panel
 link:"https://youtu.be/iYV1f5FGdqU?si=6fkYy28yjDAyZg4C"
 },
 
+// 2
 {
 name:"Hydra Panel",
 text:`PANEL INSTALLATION :
@@ -139,54 +131,138 @@ text:`PANEL INSTALLATION :
 4. curl -o install.sh https://hydrenllc.us.kg/installer.txt && chmod +x install.sh && bash install.sh
 
 NODE INSTALLATION :
-1. Open new terminal
-2. git clone https://github.com/hydralabs-beta/daemon.git
-3. cd daemon
-4. npm install
-5. node .
+1. git clone https://github.com/hydralabs-beta/daemon.git
+2. cd daemon
+3. npm install
+4. node .
 
-relaunch your panel:
+relaunch panel:
 1. cd panel
 2. sudo su
 3. node .
 
-start your node:
+start node:
 1. cd daemon
 2. sudo su
 3. node .`,
 link:"https://youtu.be/iYV1f5FGdqU?si=6fkYy28yjDAyZg4C"
 },
 
+// 3
 {
-name:"Xrdp [rdp + firefox (only for Debian 11,12,13)]",
+name:"Puffer Panel Setup",
 text:`sudo su
 apt update
 apt upgrade
-bash <(curl -s https://raw.githubusercontent.com/mahimxyzz/Vps/85b6e12c558f8befb318913c38c2e133f80d8ac9/cd/24_7.txt)`
+mkdir -p /var/lib/pufferpanel
+docker volume create pufferpanel-config
+docker create --name pufferpanel -p 8080:8080 -p 5657:5657 -v pufferpanel-config:/etc/pufferpanel -v /var/lib/pufferpanel:/var/lib/pufferpanel -v /var/run/docker.sock:/var/run/docker.sock --restart=on-failure pufferpanel/pufferpanel:latest
+docker start pufferpanel
+docker exec -it pufferpanel /pufferpanel/pufferpanel user add
+docker start pufferpanel`,
+link:"https://youtube.com/playlist?list=PLlqZTveCNnL6zTve1jmD-XlxzNsZzzzHk"
 },
 
+// 4
+{
+name:"Puffer Panel 2",
+text:`sudo su
+apt update
+apt upgrade
+mkdir -p /var/lib/pufferpanel
+docker volume create pufferpanel-config
+docker create --name pufferpanel -p 8080:8080 -p 5657:5657 -v pufferpanel-config:/etc/pufferpanel -v /var/lib/pufferpanel:/var/lib/pufferpanel -v /var/run/docker.sock:/var/run/docker.sock --restart=on-failure pufferpanel/pufferpanel:latest
+docker start pufferpanel`,
+link:"https://youtube.com/playlist?list=PLlqZTveCNnL6zTve1jmD-XlxzNsZzzzHk"
+},
+
+// 5
+{
+name:"Skyport Panel",
+text:`PANEL INSTALL:
+sudo su
+bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/panel)
+
+NODE INSTALL:
+bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/wings)
+cd skyportd
+paste your node configure
+pm2 start .
+
+restart:
+pm2 start index
+pm2 start skyportd`,
+link:"https://youtu.be/wDGOeEu6tuI"
+},
+
+// 6
+{
+name:"Air Link Panel",
+text:`bash <(curl -s https://airlink.jishnu.fun)`,
+link:"https://youtu.be/0O6FZEBs1D0"
+},
+
+// 7
+{
+name:"Draco Panel",
+text:`sudo su
+bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/jishnu)
+bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/node)
+cd node
+paste your config
+node .
+
+restart panel:
+cd panel
+node .
+
+restart node:
+cd node
+node .`,
+link:"https://youtu.be/H_p9r-j_xv0"
+},
+
+// 8
+{
+name:"Other Panels (Featherpanel etc)",
+text:`bash <(curl -s https://ptero.nobitapro.online)`
+},
+
+// 9
+{
+name:"24/7 Making Code",
+text:`python3 <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/24-7/refs/heads/main/24)
+python3`
+},
+
+// 10
+{
+name:"Xrdp [rdp + firefox (only for Debian 11,12,13)]",
+text:`bash <(curl -s https://raw.githubusercontent.com/mahimxyzz/Vps/85b6e12c558f8befb318913c38c2e133f80d8ac9/cd/24_7.txt)`
+},
+
+// 11
 {
 name:"Extra Extentions for Pterodactyl (Download website Link + Install Guide)",
 text:`Extra Extentions for Pterodactyl
-
 Guide:
-1. Upload files to /var/www/pterodactyl via SFTP
-2. Cd /var/www/pterodactyl
-3. bash <(curl -fsSL https://raw.githubusercontent.com/hopingboyz/blueprint/main/addon-installer.sh)
-4. Give input Y`,
+Upload files to /var/www/pterodactyl
+Cd /var/www/pterodactyl
+bash <(curl -fsSL https://raw.githubusercontent.com/hopingboyz/blueprint/main/addon-installer.sh)
+Give input Y`,
 external:true,
 link:"https://drive.google.com/drive/folders/1OW3mRTdq5lV9q9gy55P2njCvpCcHRTAU"
 }
+
 ];
 
-const cardsDiv=document.getElementById("cards");
-
+const cards=document.getElementById("cards");
 panels.forEach(p=>{
   let d=document.createElement("div");
   d.className="card";
   d.innerText=p.name;
   d.onclick=()=>show(p);
-  cardsDiv.appendChild(d);
+  cards.appendChild(d);
 });
 
 function show(data){
@@ -198,34 +274,33 @@ function show(data){
   function type(){
     if(i>=lines.length){
       if(data.link){
-        let s=document.createElement("div");
-        s.className=data.external?"website":"guide";
-        s.innerText=data.external?"Website":"Guide Video";
-        s.onclick=()=>window.open(data.link,"_blank");
-        out.appendChild(s);
+        let l=document.createElement("div");
+        l.className=data.external?"website":"guide";
+        l.innerText=data.external?"Website":"Guide Video";
+        l.onclick=()=>window.open(data.link,"_blank");
+        out.appendChild(l);
       }
       return;
     }
-
-    let l=document.createElement("div");
-    l.className="line";
+    let row=document.createElement("div");
+    row.className="line";
 
     let t=document.createElement("span");
     t.textContent=lines[i];
 
-    let b=document.createElement("button");
-    b.className="copy";
-    b.innerText="COPY";
-    b.onclick=()=>navigator.clipboard.writeText(lines[i]);
+    let c=document.createElement("button");
+    c.className="copy";
+    c.innerText="COPY";
+    c.onclick=()=>navigator.clipboard.writeText(lines[i]);
 
-    if(lines[i].trim()==="") b.style.display="none";
+    if(lines[i].trim()==="") c.style.display="none";
 
-    l.appendChild(t);
-    l.appendChild(b);
-    out.appendChild(l);
+    row.appendChild(t);
+    row.appendChild(c);
+    out.appendChild(row);
 
     i++;
-    setTimeout(type,40);
+    setTimeout(type,30);
   }
   type();
 }
