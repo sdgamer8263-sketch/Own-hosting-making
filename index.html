@@ -1,6 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SKA HOSTING</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Orbitron',sans-serif;
+}
+
+body{
+  background:url("beaa776788318ffa9adf475282e18bb5.gif") no-repeat center center fixed;
+  background-size:cover;
+  color:white;
+}
+
+/* HEADER */
+.ska-header{
+  text-align:center;
+  padding:30px 10px;
+  font-size:28px;
+  letter-spacing:3px;
+  color:#00ffff;
+  background:rgba(0,0,0,0.6);
+  border-bottom:2px solid cyan;
+  box-shadow:0 0 20px cyan;
+  text-shadow:0 0 20px cyan;
+}
+
+/* SEARCH */
+.search{
+  width:90%;
+  max-width:400px;
+  margin:20px auto;
+  display:block;
+  padding:12px 18px;
+  border-radius:30px;
+  border:1px solid cyan;
+  background:black;
+  color:white;
+  box-shadow:0 0 15px cyan;
+  outline:none;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+  padding:20px;
+}
+
+/* CARD */
+.card{
+  background:rgba(0,0,0,0.75);
+  padding:20px;
+  text-align:center;
+  border-radius:15px;
+  border:1px solid cyan;
+  cursor:pointer;
+  box-shadow:0 0 15px cyan;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 30px cyan;
+}
+
+/* OUTPUT */
+#output{
+  margin:20px;
+  padding:20px;
+  background:rgba(0,0,0,0.85);
+  border-radius:15px;
+  border:1px solid cyan;
+  min-height:200px;
+  box-shadow:0 0 20px cyan;
+  white-space:pre-wrap;
+}
+
+/* BUTTON */
+.btn{
+  display:inline-block;
+  margin-top:15px;
+  padding:10px 20px;
+  color:black;
+  background:cyan;
+  border-radius:25px;
+  text-decoration:none;
+  box-shadow:0 0 20px cyan;
+}
+
+/* FOOTER */
+.ska-footer{
+  margin-top:40px;
+  padding:20px;
+  text-align:center;
+  background:rgba(0,0,0,0.75);
+  border-top:1px solid cyan;
+  box-shadow:0 0 15px cyan;
+}
+
+.ska-footer span{
+  color:cyan;
+  text-shadow:0 0 10px cyan;
+}
+</style>
+</head>
+
+<body>
+
+<header class="ska-header">
+WELCOME MY HOSTING NETWORK
+</header>
+
+<input type="text" class="search" id="searchBox" placeholder="🔍 Search Panel..." onkeyup="filterCards()">
+
+<div class="grid">
+  <div class="card" onclick="typeText(hydraDash)">Hydra Dashboard</div>
+  <div class="card" onclick="typeText(hydraPanel)">Hydra Panel</div>
+  <div class="card" onclick="typeText(puffer)">Puffer Panel</div>
+  <div class="card" onclick="typeText(skyport)">Skyport Panel</div>
+  <div class="card" onclick="typeText(airlink)">Air Link Panel</div>
+  <div class="card" onclick="typeText(draco)">Draco Panel</div>
+  <div class="card" onclick="typeText(otherPanel)">Other Panels</div>
+  <div class="card" onclick="typeText(code247)">24/7 Code</div>
+  <div class="card" onclick="typeText(xrdp)">XRDP</div>
+  <div class="card" onclick="typeText(extra)">Extra Extensions</div>
+</div>
+
+<div id="output"></div>
+
+<footer class="ska-footer">
+Credits :
+<span>Jishnu Bhi</span> •
+<span>Hoping Boyz</span> •
+<span>Nobita Hosting</span> •
+<span>Myhim Bhi</span>
+</footer>
+
 <script>
-const hydraDash = `
-Hydra Dashboard
+function filterCards(){
+  let input=document.getElementById("searchBox").value.toLowerCase();
+  document.querySelectorAll(".card").forEach(c=>{
+    c.style.display=c.innerText.toLowerCase().includes(input)?"block":"none";
+  });
+}
+
+let speed=15;
+function typeText(text){
+  let out=document.getElementById("output");
+  out.innerHTML="";
+  let i=0;
+  let timer=setInterval(()=>{
+    out.innerHTML+=text.charAt(i);
+    i++;
+    if(i>=text.length) clearInterval(timer);
+  },speed);
+}
+
+/* DATA */
+const hydraDash=`Hydra Dashboard
 
 dash+panel install:
 
@@ -15,166 +183,76 @@ Node install:
 4. paste your node configure
 5. pm2 start .
 
-__relaunch dash & panel__
+relaunch:
+pm2 start index
+pm2 start daemon
 
-6. pm2 start index
-7. pm2 start daemon
-
-<a class="btn" href="https://youtu.be/iYV1f5FGdqU?si=6fkYy28yjDAyZg4C" target="_blank">
-Guide Video
-</a>
+Guide Video:
+https://youtu.be/iYV1f5FGdqU
 `;
 
-const hydraPanel = `
-Hydra Panel
+const hydraPanel=`Hydra Panel
 
-PANEL INSTALLATION :
+curl -o install.sh https://hydrenllc.us.kg/installer.txt && chmod +x install.sh && bash install.sh
 
-1. sudo su
-2. apt update
-3. apt upgrade
-4. curl -o install.sh https://hydrenllc.us.kg/installer.txt && chmod +x install.sh && bash install.sh
-
-NODE INSTALLATION :
-
-1. Open new terminal (+)
-2. git clone https://github.com/hydralabs-beta/daemon.git
-3. cd daemon
-4. npm install
-5. node .
-
-relaunch panel:
-1. cd panel
-2. sudo su
-3. node .
-
-start node:
-4. new terminal
-5. cd daemon
-6. sudo su
-7. node .
-
-<a class="btn" href="https://youtu.be/iYV1f5FGdqU?si=6fkYy28yjDAyZg4C" target="_blank">
-Guide Video
-</a>
+Guide Video:
+https://youtu.be/iYV1f5FGdqU
 `;
 
-const puffer1 = `
-Puffer Panel Setup
+const puffer=`Puffer Panel Setup
 
-sudo su
-apt update
-apt upgrade
-
-mkdir -p /var/lib/pufferpanel
-docker volume create pufferpanel-config
-docker create --name pufferpanel -p 8080:8080 -p 5657:5657 -v pufferpanel-config:/etc/pufferpanel -v /var/lib/pufferpanel:/var/lib/pufferpanel -v /var/run/docker.sock:/var/run/docker.sock --restart=on-failure pufferpanel/pufferpanel:latest
-docker start pufferpanel
-docker exec -it pufferpanel /pufferpanel/pufferpanel user add
-
-again start panel:
+docker create pufferpanel
 docker start pufferpanel
 
-<a class="btn" href="https://youtube.com/playlist?list=PLlqZTveCNnL6zTve1jmD-XlxzNsZzzzHk&si=zN6bWZM7JHpXo4vl" target="_blank">
-Guide Video
-</a>
+Guide Video:
+https://youtube.com/playlist?list=PLlqZTveCNnL6zTve1jmD-XlxzNsZzzzHk
 `;
 
-const puffer2 = puffer1;
+const skyport=`Skyport Panel
 
-const skyport = `
-Skyport Panel
+bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/panel)
 
-PANEL INSTALL:
-1. sudo su
-2. bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/panel)
-
-WINGS/NODE INSTALL:
-1. sudo su
-2. bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/wings)
-3. cd skyportd
-4. paste your node configure
-5. pm2 start .
-
-panel open again:
-1. pm2 start index
-2. pm2 start skyportd
-
-<a class="btn" href="https://youtu.be/wDGOeEu6tuI" target="_blank">
-Guide Video
-</a>
+Guide Video:
+https://youtu.be/wDGOeEu6tuI
 `;
 
-const airlink = `
-Air Link Panel
+const airlink=`Air Link Panel
 
-Command:
 bash <(curl -s https://airlink.jishnu.fun)
 
-<a class="btn" href="https://youtu.be/0O6FZEBs1D0" target="_blank">
-Guide Video
-</a>
+Guide Video:
+https://youtu.be/0O6FZEBs1D0
 `;
 
-const draco = `
-Draco Panel
+const draco=`Draco Panel
 
-install panel:
-1. sudo su
-2. bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/jishnu)
+bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/jishnu)
 
-install node:
-3. bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/node)
-4. cd node
-5. paste your configure
-6. node .
-
-restart panel:
-1. cd panel
-2. node .
-
-restart node:
-3. new terminal
-4. cd node
-5. node .
-
-<a class="btn" href="https://youtu.be/H_p9r-j_xv0" target="_blank">
-Guide Video
-</a>
+Guide Video:
+https://youtu.be/H_p9r-j_xv0
 `;
 
-const otherPanel = `
-Other Panel (Featherpanel etc)
+const otherPanel=`Other Panels
 
 bash <(curl -s https://ptero.nobitapro.online)
 `;
 
-const code247 = `
-24/7 Making Code
+const code247=`24/7 Making Code
 
-1. python3 <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/24-7/refs/heads/main/24)
-2. python3 (if not auto run)
+python3 <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/24-7/refs/heads/main/24)
 `;
 
-const xrdp = `
-XRDP (Debian 11/12/13)
+const xrdp=`XRDP Debian
 
 bash <(curl -s https://raw.githubusercontent.com/mahimxyzz/Vps/85b6e12c558f8befb318913c38c2e133f80d8ac9/cd/24_7.txt)
 `;
 
-const extraExt = `
-Extra Extensions for Pterodactyl
+const extra=`Extra Extensions
 
-<a class="btn" href="https://drive.google.com/drive/folders/1OW3mRTdq5lV9q9gy55P2njCvpCcHRTAU" target="_blank">
-Website
-</a>
-
-Step 1:
-Upload files to /var/www/pterodactyl via SFTP
-
-Step 2:
-1. cd /var/www/pterodactyl
-2. bash <(curl -fsSL https://raw.githubusercontent.com/hopingboyz/blueprint/main/addon-installer.sh)
-3. Give input Y
+Website:
+https://drive.google.com/drive/folders/1OW3mRTdq5lV9q9gy55P2njCvpCcHRTAU
 `;
 </script>
+
+</body>
+</html>
