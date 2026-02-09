@@ -106,10 +106,11 @@ text:`PANEL INSTALLATION :
 4. curl -o install.sh https://hydrenllc.us.kg/installer.txt && chmod +x install.sh && bash install.sh
 
 NODE INSTALLATION :
-1. git clone https://github.com/hydralabs-beta/daemon.git
-2. cd daemon
-3. npm install
-4. node .
+1. Open new terminal (click + icon)
+2.git clone https://github.com/hydralabs-beta/daemon.git
+3. cd daemon
+4. npm install
+5. node .
 
 relaunch panel:
 1. cd panel
@@ -117,9 +118,10 @@ relaunch panel:
 3. node .
 
 start node:
-1. cd daemon
-2. sudo su
-3. node .`,
+1. create new terminal (+)
+2. cd daemon
+3. sudo su
+4. node .`,
 link:"https://youtu.be/iYV1f5FGdqU?si=6fkYy28yjDAyZg4C"
 },
 
@@ -128,40 +130,58 @@ name:"Puffer Panel Setup",
 text:`sudo su
 apt update
 apt upgrade
-mkdir -p /var/lib/pufferpanel
-docker volume create pufferpanel-config
-docker create --name pufferpanel -p 8080:8080 -p 5657:5657 -v pufferpanel-config:/etc/pufferpanel -v /var/lib/pufferpanel:/var/lib/pufferpanel -v /var/run/docker.sock:/var/run/docker.sock --restart=on-failure pufferpanel/pufferpanel:latest
-docker start pufferpanel
-docker exec -it pufferpanel /pufferpanel/pufferpanel user add
+
+$ mkdir -p /var/lib/pufferpanel
+$ docker volume create pufferpanel-config
+$ docker create --name pufferpanel -p 8080:8080 -p 5657:5657 -v pufferpanel-config:/etc/pufferpanel -v /var/lib/pufferpanel:/var/lib/pufferpanel -v /var/run/docker.sock:/var/run/docker.sock --restart=on-failure pufferpanel/pufferpanel:latest
+$ docker start pufferpanel
+$ docker exec -it pufferpanel /pufferpanel/pufferpanel user add
+
+again start your panel
+      
 docker start pufferpanel`,
 link:"https://youtube.com/playlist?list=PLlqZTveCNnL6zTve1jmD-XlxzNsZzzzHk"
 },
 
 {
 name:"Puffer Panel 2",
-text:`sudo su
-apt update
-apt upgrade
-mkdir -p /var/lib/pufferpanel
-docker volume create pufferpanel-config
-docker create --name pufferpanel -p 8080:8080 -p 5657:5657 -v pufferpanel-config:/etc/pufferpanel -v /var/lib/pufferpanel:/var/lib/pufferpanel -v /var/run/docker.sock:/var/run/docker.sock --restart=on-failure pufferpanel/pufferpanel:latest
-docker start pufferpanel`,
+text:`1) apt update
+2) apt install sudo
+3) apt install systemctl
+
+4) curl -s https://packagecloud.io/install/repositories/pufferpanel/pufferpanel/script.deb.sh?any=true | sudo bash
+
+5) sudo apt update
+6) sudo apt-get install pufferpanel
+7) sudo pufferpanel user add
+8) sudo systemctl enable --now pufferpanel              
+
+
+again start your panel:
+      
+sudo systemctl enable --now pufferpanel`,
 link:"https://youtube.com/playlist?list=PLlqZTveCNnL6zTve1jmD-XlxzNsZzzzHk"
 },
 
 {
 name:"Skyport Panel",
-text:`sudo su
-bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/panel)
+text:`                                       skyport panel
 
-bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/wings)
-cd skyportd
-paste your node configure
-pm2 start .
+PANEL INSTALL:
+1) sudo su
+2) bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/panel)
 
-restart:
-pm2 start index
-pm2 start skyportd`,
+WINGS/NODE INSTALL:
+1) sudo su
+2) bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/wings)
+3) cd skyportd
+4) paste your node configure
+5) pm2 start .                                          
+
+skyport panel open again
+
+1) pm2 start index
+2) pm2 start skyportd`,
 link:"https://youtu.be/wDGOeEu6tuI"
 },
 
@@ -173,20 +193,36 @@ link:"https://youtu.be/0O6FZEBs1D0"
 
 {
 name:"Draco Panel",
-text:`sudo su
-bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/jishnu)
-bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/node)
-cd node
-paste your config
-node .
+text:                   
 
-restart panel:
-cd panel
-node .
+1) sudo su
 
-restart node:
-cd node
-node .`,
+2) bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/jishnu)
+
+                       install the node
+
+1) bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/node) 
+
+2) cd node
+
+3) paste your configure of node
+
+4) node . 
+
+ again start your panel:-
+
+1) cd panel
+
+2) node .
+
+   again start node
+
+1) create a new terminal
+
+2) cd node
+
+3) node . 
+`,
 link:"https://youtu.be/H_p9r-j_xv0"
 },
 
@@ -198,6 +234,7 @@ text:`bash <(curl -s https://ptero.nobitapro.online)`
 {
 name:"24/7 Making Code",
 text:`python3 <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/24-7/refs/heads/main/24)
+
 python3`
 },
 
@@ -210,10 +247,12 @@ text:`bash <(curl -s https://raw.githubusercontent.com/mahimxyzz/Vps/85b6e12c558
 name:"Extra Extentions for Pterodactyl (Download website Link + Install Guide)",
 text:`Extra Extentions for Pterodactyl
 
+Guidance:
 
-
-Guide:
 Upload files to /var/www/pterodactyl
+
+Command:
+
 Cd /var/www/pterodactyl
 bash <(curl -fsSL https://raw.githubusercontent.com/hopingboyz/blueprint/main/addon-installer.sh)
 Give input Y`,
