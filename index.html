@@ -8,8 +8,8 @@
 <style>
 :root {
   --primary: #00ffff;
-  --bg-glass: rgba(0, 0, 0, 0.8);
-  --glow: 0 0 15px rgba(0, 255, 255, 0.5);
+  --bg-glass: rgba(0, 0, 0, 0.85);
+  --glow: 0 0 15px rgba(0, 255, 255, 0.6);
 }
 
 body {
@@ -21,10 +21,10 @@ body {
   min-height: 100vh;
 }
 
-/* Sidebar Styling */
+/* Sidebar */
 .sidebar {
   width: 70px;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.95);
   border-right: 2px solid var(--primary);
   display: flex;
   flex-direction: column;
@@ -35,18 +35,8 @@ body {
   z-index: 100;
 }
 
-.sidebar a {
-  margin-bottom: 30px;
-  transition: 0.3s;
-  text-decoration: none;
-}
-
-.sidebar img {
-  width: 35px;
-  height: 35px;
-  filter: drop-shadow(0 0 5px var(--primary));
-}
-
+.sidebar a { margin-bottom: 30px; transition: 0.3s; }
+.sidebar img { width: 38px; height: 38px; filter: drop-shadow(0 0 5px var(--primary)); }
 .sidebar a:hover { transform: scale(1.2); }
 
 /* Main Content */
@@ -62,18 +52,18 @@ header {
   padding: 25px;
   background: var(--bg-glass);
   box-shadow: 0 4px 20px cyan;
-  backdrop-filter: blur(10px);
 }
 
 .search { text-align: center; padding: 20px; }
 .search input {
   width: 85%;
   max-width: 600px;
-  padding: 12px;
-  border-radius: 10px;
+  padding: 15px;
+  border-radius: 12px;
   border: 1px solid var(--primary);
   background: #000;
   color: #fff;
+  font-size: 16px;
   box-shadow: var(--glow);
 }
 
@@ -82,84 +72,106 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 15px;
   padding: 20px;
 }
 
 .card {
   background: var(--bg-glass);
-  padding: 15px 20px;
-  border-radius: 10px;
+  padding: 18px 25px;
+  border-radius: 12px;
   width: 90%;
-  max-width: 700px;
+  max-width: 750px;
   cursor: pointer;
-  border-left: 5px solid var(--primary);
+  border-left: 6px solid var(--primary);
   transition: 0.3s;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .card:hover {
-  background: rgba(0, 255, 255, 0.1);
+  background: rgba(0, 255, 255, 0.15);
   transform: translateX(10px);
   box-shadow: var(--glow);
 }
 
+/* Output Area */
 #output-section {
   width: 90%;
-  max-width: 700px;
+  max-width: 750px;
   margin: 20px auto;
 }
 
 #output {
   background: rgba(0,0,0,0.95);
-  padding: 20px;
-  border-radius: 10px;
-  border: 1px solid var(--primary);
+  padding: 25px;
+  border-radius: 15px;
+  border: 2px solid var(--primary);
   white-space: pre-wrap;
-  font-size: 14px;
+  min-height: 80px;
+  box-shadow: inset 0 0 20px rgba(0,255,255,0.1);
 }
 
 .line {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 5px;
+  align-items: center;
+  margin-bottom: 20px; /* Bada gap commands ke beech */
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+.command-text {
+  font-size: 19px; /* Command size badi ki gayi hai */
+  color: #fff;
+  word-break: break-all;
+  padding-right: 20px;
+  line-height: 1.5;
 }
 
 .copy {
   background: var(--primary);
   border: none;
-  border-radius: 4px;
-  padding: 2px 8px;
+  border-radius: 6px;
+  padding: 6px 14px;
   cursor: pointer;
   font-weight: bold;
-  font-size: 11px;
+  font-size: 12px;
+  flex-shrink: 0;
+  transition: 0.2s;
 }
 
-.guide, .website {
+.copy:active { transform: scale(0.9); }
+
+.guide-btn {
   color: #000;
   background: var(--primary);
-  padding: 5px 15px;
-  border-radius: 20px;
+  padding: 10px 25px;
+  border-radius: 5px;
   text-decoration: none;
   display: inline-block;
-  margin-top: 15px;
+  margin-top: 25px;
   font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 footer {
   text-align: center;
-  padding: 20px;
+  padding: 25px;
   background: var(--bg-glass);
-  font-size: 13px;
+  font-size: 14px;
   border-top: 1px solid var(--primary);
+  margin-top: auto;
 }
 
 @media (max-width: 600px) {
   .main-content { margin-left: 60px; width: calc(100% - 60px); }
   .sidebar { width: 60px; }
+  .command-text { font-size: 16px; }
 }
 </style>
 </head>
@@ -167,26 +179,26 @@ footer {
 
 <div class="sidebar">
   <a href="https://www.youtube.com/@skahosting" target="_blank">
-    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YT">
+    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
   </a>
   <a href="https://discord.gg/UqfbtuURca" target="_blank">
-    <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="DC">
+    <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord">
   </a>
 </div>
 
 <div class="main-content">
   <header>
-    <h1>WELCOME TO SKA HOSTING</h1>
+    <h1>SKA HOSTING NETWORK</h1>
   </header>
 
   <div class="search">
-    <input id="search" placeholder="🔍 Search/Filter Panels..." onkeyup="filterCards()">
+    <input id="search" placeholder="🔍 Search Panels..." onkeyup="filterCards()">
   </div>
 
   <div class="grid" id="cards"></div>
 
   <div id="output-section">
-    <div id="output">Select a panel to see details...</div>
+    <div id="output">Choose a panel to display commands...</div>
   </div>
 
   <footer>
@@ -195,71 +207,48 @@ footer {
 </div>
 
 <script>
-const typingSpeed = 20;
+const typingSpeed = 15;
 
 const panels = [
   {
     name: "Pterodactyl Extra Extentions (No SFTP)",
     text: `bash <(curl -fsSL https://raw.githubusercontent.com/sdgamer8263-sketch/pterodactyl_extention/main/install.sh)`,
-    link: "https://www.youtube.com/@skahosting"
+    noLink: true
   },
   {
     name: "Xrdp (Install+Setup) For Debian",
     text: `curl -fsSL https://raw.githubusercontent.com/sdgamer8263-sketch/rdp2/main/install.sh | sudo bash`,
-    link: "https://www.youtube.com/@skahosting"
+    noLink: true
   },
   {
     name: "Xrdp (Install+Setup) For Ubuntu",
     text: `curl -fsSL https://raw.githubusercontent.com/sdgamer8263-sketch/Rdp/main/install.sh | sudo bash`,
-    link: "https://www.youtube.com/@skahosting"
+    noLink: true
   },
   {
     name: "Hydra Dashboard",
-    text: `dash+panel install:
-1. sudo su
-2. bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/dashboard/refs/heads/main/dash)
-
-Node install:
-1. git clone https://github.com/hydralabs-beta/daemon.git
-2. cd daemon
-3. npm i
-4. paste your node configure
-5. pm2 start .`,
-    link: "https://youtu.be/iYV1f5FGdqU?si=6fkYy28yjDAyZg4C"
-  },
-  {
-    name: "Hydra Panel",
-    text: `PANEL INSTALLATION:
-1. sudo su
-2. apt update
-3. curl -o install.sh https://hydrenllc.us.kg/installer.txt && chmod +x install.sh && bash install.sh
-
-NODE INSTALLATION:
-1. git clone https://github.com/hydralabs-beta/daemon.git
-2. cd daemon
-3. npm install
-4. node .`,
+    text: `sudo su
+bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/dashboard/refs/heads/main/dash)
+git clone https://github.com/hydralabs-beta/daemon.git
+cd daemon
+npm install
+pm2 start .`,
     link: "https://youtu.be/iYV1f5FGdqU?si=6fkYy28yjDAyZg4C"
   },
   {
     name: "Skyport Panel",
-    text: `PANEL INSTALL:
-1) sudo su
-2) bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/panel)
-
-WINGS/NODE:
-1) bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/wings)
-2) cd skyportd
-3) paste config
-4) pm2 start .`,
+    text: `sudo su
+bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/panel)
+bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/wings)
+cd skyportd
+pm2 start .`,
     link: "https://youtu.be/wDGOeEu6tuI"
   },
   {
     name: "Puffer Panel Setup",
     text: `sudo su
-apt update
+apt update && apt upgrade
 docker volume create pufferpanel-config
-docker create --name pufferpanel -p 8080:8080 -p 5657:5657 -v pufferpanel-config:/etc/pufferpanel -v /var/lib/pufferpanel:/var/lib/pufferpanel -v /var/run/docker.sock:/var/run/docker.sock --restart=on-failure pufferpanel/pufferpanel:latest
 docker start pufferpanel
 docker exec -it pufferpanel /pufferpanel/pufferpanel user add`,
     link: "https://youtube.com/playlist?list=PLlqZTveCNnL6zTve1jmD-XlxzNsZzzzHk"
@@ -271,38 +260,25 @@ docker exec -it pufferpanel /pufferpanel/pufferpanel user add`,
   },
   {
     name: "Draco Panel",
-    text: `1) sudo su
-2) bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/jishnu)
-Node Install:
-bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/node)`,
+    text: `bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/jishnu)
+bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/node)
+cd panel && node .`,
     link: "https://youtu.be/H_p9r-j_xv0"
   },
   {
-    name: "Other Panels (Feather etc)",
-    text: `bash <(curl -s https://ptero.nobitapro.online)`
-  },
-  {
     name: "24/7 Making Code",
-    text: `python3 <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/24-7/refs/heads/main/24)`
-  },
-  {
-    name: "Extra Extentions (Manual Guide)",
-    text: `Upload files to /var/www/pterodactyl
-Command:
-Cd /var/www/pterodactyl
-bash <(curl -fsSL https://raw.githubusercontent.com/hopingboyz/blueprint/main/addon-installer.sh)`,
-    link: "https://drive.google.com/drive/folders/1OW3mRTdq5lV9q9gy55P2njCvpCcHRTAU"
+    text: `python3 <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/24-7/refs/heads/main/24)`,
+    noLink: true
   }
 ];
 
 const cardsBox = document.getElementById("cards");
 
-function renderCards() {
-  cardsBox.innerHTML = "";
-  panels.forEach((p, index) => {
+function init() {
+  panels.forEach(p => {
     const d = document.createElement("div");
     d.className = "card";
-    d.innerHTML = `<span>${p.name}</span> <span style="font-size:12px; opacity:0.6;">Click →</span>`;
+    d.innerHTML = `<span>${p.name}</span> <span>→</span>`;
     d.onclick = () => showPanel(p);
     cardsBox.appendChild(d);
   });
@@ -312,48 +288,53 @@ function showPanel(data) {
   const out = document.getElementById("output");
   out.innerHTML = "";
   let lines = data.text.split("\n");
-  let li = 0, ci = 0;
-  let span, row, copyBtn;
+  let li = 0;
 
   function type() {
     if (li >= lines.length) {
-      if (data.link) {
-        const l = document.createElement("a");
-        l.className = "guide";
-        l.href = data.link;
-        l.target = "_blank";
-        l.innerText = "LINK / VIDEO GUIDE";
-        out.appendChild(document.createElement("br"));
-        out.appendChild(l);
+      if (!data.noLink && data.link) {
+        const btn = document.createElement("a");
+        btn.className = "guide-btn";
+        btn.href = data.link;
+        btn.target = "_blank";
+        btn.innerText = "Guide Video"; // Yahan replace kar diya gaya hai
+        out.appendChild(btn);
       }
       return;
     }
 
-    if (ci === 0) {
-      row = document.createElement("div");
-      row.className = "line";
-      span = document.createElement("span");
-      copyBtn = document.createElement("button");
-      copyBtn.className = "copy";
-      copyBtn.innerText = "COPY";
-      copyBtn.onclick = () => {
-        navigator.clipboard.writeText(lines[li]);
-        copyBtn.innerText = "COPIED!";
-        setTimeout(()=> copyBtn.innerText="COPY", 1500);
-      };
-      if (lines[li].trim() === "") copyBtn.style.display = "none";
-      row.appendChild(span);
-      row.appendChild(copyBtn);
-      out.appendChild(row);
-    }
+    const row = document.createElement("div");
+    row.className = "line";
+    const span = document.createElement("span");
+    span.className = "command-text";
+    const copyBtn = document.createElement("button");
+    copyBtn.className = "copy";
+    copyBtn.innerText = "COPY";
+    
+    const currentLineText = lines[li];
+    copyBtn.onclick = () => {
+      navigator.clipboard.writeText(currentLineText);
+      copyBtn.innerText = "DONE!";
+      setTimeout(() => copyBtn.innerText = "COPY", 1200);
+    };
 
-    if (ci < lines[li].length) {
-      span.textContent += lines[li][ci++];
-      setTimeout(type, typingSpeed);
-    } else {
-      li++; ci = 0;
-      setTimeout(type, typingSpeed);
+    if (currentLineText.trim() === "") copyBtn.style.display = "none";
+    
+    row.appendChild(span);
+    row.appendChild(copyBtn);
+    out.appendChild(row);
+    
+    let charIdx = 0;
+    function typeChar() {
+      if (charIdx < currentLineText.length) {
+        span.textContent += currentLineText[charIdx++];
+        setTimeout(typeChar, typingSpeed);
+      } else {
+        li++;
+        setTimeout(type, 150);
+      }
     }
+    typeChar();
   }
   type();
 }
@@ -365,7 +346,7 @@ function filterCards() {
   });
 }
 
-renderCards();
+init();
 </script>
 
 </body>
