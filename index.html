@@ -2,327 +2,276 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>SKA HOSTING</title>
+<title>SDGAMER | SKA HOSTING PANEL</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{
-  margin:0;
-  font-family: Consolas, monospace;
-  background:url("beaa776788318ffa9adf475282e18bb5.gif") center/cover fixed no-repeat;
-  color:#00ffff;
+:root {
+  --accent: #00ffff;
+  --bg: #050505;
+  --sidebar-bg: #0f0f0f;
+  --card-bg: #161616;
+  --text: #e0e0e0;
 }
-header,footer{
-  text-align:center;
-  padding:15px;
-  background:rgba(0,0,0,.7);
-  box-shadow:0 0 20px cyan;
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
 }
-.search{text-align:center;padding:10px}
-.search input{
-  width:90%;padding:10px;border-radius:10px;border:none;
+
+/* Sidebar Styling */
+.sidebar {
+  width: 260px;
+  background: var(--sidebar-bg);
+  border-right: 1px solid #222;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  transition: 0.3s;
 }
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:15px;padding:15px;
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--accent);
+  margin-bottom: 30px;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0,255,255,0.3);
 }
-.card{
-  background:rgba(0,0,0,.65);
-  padding:15px;
-  border-radius:14px;
-  text-align:center;
-  cursor:pointer;
-  box-shadow:0 0 15px cyan;
+
+.nav-item {
+  padding: 12px 15px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+  border-left: 3px solid transparent;
 }
-.card:hover{transform:scale(1.05)}
-#output{padding:15px;white-space:pre-wrap;}
-.line{
-  display:flex;justify-content:space-between;gap:10px;
+
+.nav-item:hover {
+  background: rgba(0, 255, 255, 0.1);
+  border-left: 3px solid var(--accent);
 }
-.copy{
-  background:#00ffff;border:none;border-radius:6px;
-  padding:2px 6px;cursor:pointer;
+
+/* Main Content Area */
+.main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 30px;
+  background: radial-gradient(circle at top right, #102020, #050505);
 }
-.guide,.website{
-  color:#00ffff;
-  text-decoration:underline;
-  cursor:pointer;
-  display:inline-block;
-  margin-top:10px;
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #222;
+}
+
+.stat-card h4 { margin: 0; font-size: 0.8rem; color: #888; }
+.stat-card p { margin: 10px 0 0; font-size: 1.2rem; color: var(--accent); font-weight: bold; }
+
+/* Search & List */
+.search-box {
+  width: 100%;
+  padding: 12px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.panel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.panel-card {
+  background: var(--card-bg);
+  padding: 15px 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #222;
+  transition: 0.3s;
+}
+
+.panel-card:hover {
+  border-color: var(--accent);
+  background: #1c1c1c;
+}
+
+/* Terminal View */
+#terminal-container {
+  display: none;
+  margin-top: 30px;
+  background: #000;
+  border-radius: 10px;
+  border: 1px solid #333;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.term-header {
+  background: #222;
+  padding: 10px 15px;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.term-body {
+  padding: 20px;
+  font-family: 'Consolas', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.copy-btn {
+  background: var(--accent);
+  border: none;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  body { flex-direction: column; }
+  .sidebar { width: 100%; height: auto; padding: 10px; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<h1>WELCOME MY HOSTING NETWORK</h1>
-</header>
-
-<div class="search">
-<input id="search" placeholder="🔍 Search / filter panels..." onkeyup="filterCards()">
+<div class="sidebar">
+  <div class="logo">SDGAMER HOST</div>
+  <div class="nav-item">📊 Dashboard</div>
+  <div class="nav-item">📦 All Panels</div>
+  <div class="nav-item">⚙️ Settings</div>
+  <div style="margin-top:auto; font-size: 0.7rem; color: #555; text-align:center;">
+    v2.0.4 Powered by SDGAMER
+  </div>
 </div>
 
-<div class="grid" id="cards"></div>
-<div id="output"></div>
+<div class="main">
+  <div class="stats-grid">
+    <div class="stat-card"><h4>SYSTEM STATUS</h4><p>ONLINE</p></div>
+    <div class="stat-card"><h4>TOTAL SCRIPTS</h4><p>12 ACTIVE</p></div>
+    <div class="stat-card"><h4>USER ID</h4><p>SD-8263</p></div>
+  </div>
 
-<footer>
-Credits: Jishnu Bhi • Hoping Boyz • Nobita Hosting • Myhim Bhi
-</footer>
+  <input type="text" id="search" class="search-box" placeholder="Search commands or panels..." onkeyup="filter()">
+
+  <div class="panel-list" id="panelList">
+    </div>
+
+  <div id="terminal-container">
+    <div class="term-header">
+      <span>root@sdgamer:~# output</span>
+      <span style="color:#555">bash | python | node</span>
+    </div>
+    <div class="term-body" id="output"></div>
+  </div>
+
+  <footer style="margin-top: 50px; text-align: center; color: #444; font-size: 0.8rem;">
+    Credits: SDGAMER • Jishnu Bhi • Hoping Boyz • Nobita Hosting • Myhim Bhi
+  </footer>
+</div>
 
 <script>
-const typingSpeed = 35; // 👈 letter speed (increase = slower)
-
-const panels=[
-
-{
-name:"Hydra Dashboard",
-text:`Hydra Dashboard
-
-dash+panel install:
-1. sudo su
-2. bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/dashboard/refs/heads/main/dash)
-
-Node install:
-1. git clone https://github.com/hydralabs-beta/daemon.git
-2. cd daemon
-3. npm i
-4. paste your node configure
-5. pm2 start .
-
-relaunch dash & panel
-6. pm2 start index
-7. pm2 start daemon`,
-link:"https://youtu.be/iYV1f5FGdqU?si=6fkYy28yjDAyZg4C"
-},
-
-{
-name:"Hydra Panel",
-text:`PANEL INSTALLATION :
-1. sudo su
-2. apt update
-3. apt upgrade
-4. curl -o install.sh https://hydrenllc.us.kg/installer.txt && chmod +x install.sh && bash install.sh
-
-NODE INSTALLATION :
-1. Open new terminal (click + icon)
-2.git clone https://github.com/hydralabs-beta/daemon.git
-3. cd daemon
-4. npm install
-5. node .
-
-relaunch panel:
-1. cd panel
-2. sudo su
-3. node .
-
-start node:
-1. create new terminal (+)
-2. cd daemon
-3. sudo su
-4. node .`,
-link:"https://youtu.be/iYV1f5FGdqU?si=6fkYy28yjDAyZg4C"
-},
-
-{
-name:"Puffer Panel Setup",
-text:`sudo su
-apt update
-apt upgrade
-
-$ mkdir -p /var/lib/pufferpanel
-$ docker volume create pufferpanel-config
-$ docker create --name pufferpanel -p 8080:8080 -p 5657:5657 -v pufferpanel-config:/etc/pufferpanel -v /var/lib/pufferpanel:/var/lib/pufferpanel -v /var/run/docker.sock:/var/run/docker.sock --restart=on-failure pufferpanel/pufferpanel:latest
-$ docker start pufferpanel
-$ docker exec -it pufferpanel /pufferpanel/pufferpanel user add
-
-again start your panel
-      
-docker start pufferpanel`,
-link:"https://youtube.com/playlist?list=PLlqZTveCNnL6zTve1jmD-XlxzNsZzzzHk"
-},
-
-{
-name:"Puffer Panel 2",
-text:`1) apt update
-2) apt install sudo
-3) apt install systemctl
-
-4) curl -s https://packagecloud.io/install/repositories/pufferpanel/pufferpanel/script.deb.sh?any=true | sudo bash
-
-5) sudo apt update
-6) sudo apt-get install pufferpanel
-7) sudo pufferpanel user add
-8) sudo systemctl enable --now pufferpanel              
-
-
-again start your panel:
-      
-sudo systemctl enable --now pufferpanel`,
-link:"https://youtube.com/playlist?list=PLlqZTveCNnL6zTve1jmD-XlxzNsZzzzHk"
-},
-
-{
-name:"Skyport Panel",
-text:`                                       skyport panel
-
-PANEL INSTALL:
-1) sudo su
-2) bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/panel)
-
-WINGS/NODE INSTALL:
-1) sudo su
-2) bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/wings)
-3) cd skyportd
-4) paste your node configure
-5) pm2 start .                                          
-
-skyport panel open again
-
-1) pm2 start index
-2) pm2 start skyportd`,
-link:"https://youtu.be/wDGOeEu6tuI"
-},
-
-{
-name:"Air Link Panel",
-text:`bash <(curl -s https://airlink.jishnu.fun)`,
-link:"https://youtu.be/0O6FZEBs1D0"
-},
-
-{
-name:"Draco Panel",
-text:`                    
-
-1) sudo su
-
-2) bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/jishnu)
-
-                       install the node
-
-1) bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/node) 
-
-2) cd node
-
-3) paste your configure of node
-
-4) node . 
-
- again start your panel:-
-
-1) cd panel
-
-2) node .
-
-   again start node
-
-1) create a new terminal
-
-2) cd node
-
-3) node . 
-`,
-link:"https://youtu.be/H_p9r-j_xv0"
-},
-
-{
-name:"Other Panels (Featherpanel etc)",
-text:`bash <(curl -s https://ptero.nobitapro.online)`
-},
-
-{
-name:"24/7 Making Code",
-text:`python3 <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/24-7/refs/heads/main/24)
-
-python3`
-},
-
-{
-name:"Xrdp [rdp + firefox (only for Debian 11,12,13)]",
-text:`bash <(curl -s https://raw.githubusercontent.com/mahimxyzz/Vps/85b6e12c558f8befb318913c38c2e133f80d8ac9/cd/24_7.txt)`
-},
-
-{
-name:"Extra Extentions for Pterodactyl (Download website Link + Install Guide)",
-text:`Extra Extentions for Pterodactyl
-
-Guidance:
-
-Upload files to /var/www/pterodactyl
-
-Command:
-
-Cd /var/www/pterodactyl
-bash <(curl -fsSL https://raw.githubusercontent.com/hopingboyz/blueprint/main/addon-installer.sh)
-Give input Y`,
-external:true,
-link:"https://drive.google.com/drive/folders/1OW3mRTdq5lV9q9gy55P2njCvpCcHRTAU"
-}
-
+const scripts = [
+  {
+    name: "Pterodactyl Extra Extentions (No SFTP)",
+    cmd: "bash <(curl -fsSL https://raw.githubusercontent.com/sdgamer8263-sketch/pterodactyl_extention/main/install.sh)"
+  },
+  {
+    name: "Xrdp For Debian (Install + Setup)",
+    cmd: "curl -fsSL https://raw.githubusercontent.com/sdgamer8263-sketch/rdp2/main/install.sh | sudo bash"
+  },
+  {
+    name: "Xrdp For Ubuntu (Install + Setup)",
+    cmd: "curl -fsSL https://raw.githubusercontent.com/sdgamer8263-sketch/Rdp/main/install.sh | sudo bash"
+  },
+  {
+    name: "Hydra Dashboard Install",
+    cmd: "bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/dashboard/refs/heads/main/dash)"
+  },
+  {
+    name: "Skyport Panel Setup",
+    cmd: "bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/panel)"
+  },
+  {
+    name: "Air Link Panel",
+    cmd: "bash <(curl -s https://airlink.jishnu.fun)"
+  },
+  {
+    name: "Puffer Panel Docker",
+    cmd: "docker start pufferpanel"
+  }
 ];
 
-const cards=document.getElementById("cards");
-panels.forEach(p=>{
-  const d=document.createElement("div");
-  d.className="card";
-  d.innerText=p.name;
-  d.onclick=()=>show(p);
-  cards.appendChild(d);
+const list = document.getElementById('panelList');
+const term = document.getElementById('output');
+const termContainer = document.getElementById('terminal-container');
+
+scripts.forEach((s, index) => {
+  const div = document.createElement('div');
+  div.className = 'panel-card';
+  div.innerHTML = `<span>${s.name}</span> <span style="color:#00ffff; font-size:1.2rem;">→</span>`;
+  div.onclick = () => runCommand(s.cmd);
+  list.appendChild(div);
 });
 
-function show(data){
-  const out=document.getElementById("output");
-  out.innerHTML="";
-  let lines=data.text.split("\n");
-  let li=0, ci=0;
-  let span, row, copyBtn;
-
-  function type(){
-    if(li>=lines.length){
-      if(data.link){
-        const l=document.createElement("div");
-        l.className=data.external?"website":"guide";
-        l.innerText=data.external?"Website":"Guide Video";
-        l.onclick=()=>window.open(data.link,"_blank");
-        out.appendChild(l);
-      }
-      return;
-    }
-
-    if(ci===0){
-      row=document.createElement("div");
-      row.className="line";
-
-      span=document.createElement("span");
-      copyBtn=document.createElement("button");
-      copyBtn.className="copy";
-      copyBtn.innerText="COPY";
-      copyBtn.onclick=()=>navigator.clipboard.writeText(lines[li]);
-
-      if(lines[li].trim()==="") copyBtn.style.display="none";
-
-      row.appendChild(span);
-      row.appendChild(copyBtn);
-      out.appendChild(row);
-    }
-
-    if(ci < lines[li].length){
-      span.textContent += lines[li][ci++];
-      setTimeout(type, typingSpeed);
-    }else{
-      span.textContent += "\n";
-      li++; ci=0;
-      setTimeout(type, typingSpeed*1);
+function runCommand(command) {
+  termContainer.style.display = 'block';
+  term.innerHTML = "";
+  let i = 0;
+  
+  // Terminal typing effect
+  function type() {
+    if (i < command.length) {
+      term.innerHTML += command.charAt(i);
+      i++;
+      setTimeout(type, 20);
+    } else {
+      term.innerHTML += `<br><br><button class="copy-btn" onclick="copyText('${command}')">CLICK TO COPY COMMAND</button>`;
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     }
   }
+  term.innerHTML = `<span style="color:#0f0">sdgamer@hosting:~$</span> `;
   type();
 }
 
-function filterCards(){
-  const v=document.getElementById("search").value.toLowerCase();
-  document.querySelectorAll(".card").forEach(c=>{
-    c.style.display=c.innerText.toLowerCase().includes(v)?"block":"none";
+function copyText(txt) {
+  navigator.clipboard.writeText(txt);
+  alert("Command Copied to Clipboard!");
+}
+
+function filter() {
+  let val = document.getElementById('search').value.toLowerCase();
+  let cards = document.querySelectorAll('.panel-card');
+  cards.forEach(c => {
+    c.style.display = c.innerText.toLowerCase().includes(val) ? 'flex' : 'none';
   });
 }
 </script>
