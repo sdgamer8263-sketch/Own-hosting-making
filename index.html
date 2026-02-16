@@ -2,310 +2,342 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>SDGAMER | NEON HOSTING PANEL</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>SKA HOSTING - SDGAMER EDITION</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 :root {
-  --neon: #00ffff;
-  --neon-glow: rgba(0, 255, 255, 0.4);
-  --bg: #050505;
-  --card-bg: rgba(20, 20, 20, 0.9);
+  --primary: #00ffff;
+  --bg-glass: rgba(0, 0, 0, 0.75);
+  --glow: 0 0 15px rgba(0, 255, 255, 0.5);
 }
-
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: var(--bg);
-  color: #fff;
-  height: 100vh;
+  font-family: 'Segoe UI', Consolas, monospace;
+  background: url("beaa776788318ffa9adf475282e18bb5.gif") center/cover fixed no-repeat;
+  color: var(--primary);
   display: flex;
-  overflow: hidden;
+  min-height: 100vh;
 }
 
-/* --- NEON SIDEBAR --- */
+/* Sidebar Styling */
 .sidebar {
-  width: 280px;
-  background: #000;
-  border-right: 2px solid var(--neon);
-  box-shadow: 5px 0 15px var(--neon-glow);
+  width: 70px;
+  background: var(--bg-glass);
+  border-right: 1px solid var(--primary);
   display: flex;
   flex-direction: column;
-  padding: 25px;
-  transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  z-index: 1000;
-}
-
-@media (max-width: 768px) {
-  .sidebar { position: fixed; left: -290px; height: 100%; }
-  .sidebar.active { left: 0; }
-}
-
-.logo {
-  font-size: 1.6rem;
-  font-weight: 900;
-  color: var(--neon);
-  text-align: center;
-  margin-bottom: 40px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 0 0 10px var(--neon), 0 0 20px var(--neon);
-}
-
-.nav-item {
-  padding: 15px;
-  margin-bottom: 12px;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: 0.3s;
-  color: #aaa;
-  display: flex;
   align-items: center;
-  gap: 10px;
+  padding-top: 20px;
+  position: fixed;
+  height: 100%;
+  z-index: 100;
+  box-shadow: 5px 0 15px rgba(0,0,0,0.5);
 }
 
-.nav-item:hover, .nav-item.active {
-  color: var(--neon);
-  border: 1px solid var(--neon);
-  background: rgba(0, 255, 255, 0.05);
-  box-shadow: inset 0 0 10px var(--neon-glow), 0 0 10px var(--neon-glow);
-}
-
-/* --- MAIN AREA --- */
-.main {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
-  background: radial-gradient(circle at center, #0a1a1a 0%, #050505 100%);
-}
-
-.mobile-header {
-  display: none;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-@media (max-width: 768px) { .mobile-header { display: flex; } }
-
-.menu-btn {
-  background: transparent;
-  color: var(--neon);
-  border: 2px solid var(--neon);
-  padding: 8px 20px;
-  border-radius: 5px;
-  font-weight: bold;
-  box-shadow: 0 0 10px var(--neon-glow);
-}
-
-.stats-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  margin-bottom: 30px;
-}
-
-.stat-card {
-  background: var(--card-bg);
-  padding: 15px;
-  border-radius: 10px;
-  border: 1px solid #333;
-  text-align: center;
-  transition: 0.3s;
-}
-
-.stat-card:hover { border-color: var(--neon); box-shadow: 0 0 15px var(--neon-glow); }
-.stat-card b { color: var(--neon); font-size: 1.1rem; text-shadow: 0 0 5px var(--neon); }
-
-.search-bar {
-  width: 100%;
-  padding: 15px;
-  background: #000;
-  border: 2px solid #222;
-  border-radius: 10px;
-  color: #fff;
-  font-size: 1rem;
+.sidebar a {
   margin-bottom: 25px;
-  outline: none;
-  transition: 0.3s;
+  transition: transform 0.3s;
 }
 
-.search-bar:focus {
-  border-color: var(--neon);
-  box-shadow: 0 0 15px var(--neon-glow);
+.sidebar a:hover {
+  transform: scale(1.2);
 }
 
-/* --- NEON CARDS --- */
-.script-card {
-  background: var(--card-bg);
+.sidebar img {
+  width: 40px;
+  height: 40px;
+  filter: drop-shadow(0 0 5px var(--primary));
+}
+
+/* Main Content Area */
+.main-content {
+  margin-left: 70px;
+  width: calc(100% - 70px);
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  text-align: center;
+  padding: 30px 15px;
+  background: var(--bg-glass);
+  box-shadow: 0 5px 20px rgba(0, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+header h1 {
+  margin: 0;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 1.8rem;
+}
+
+.search {
+  text-align: center;
   padding: 20px;
+}
+
+.search input {
+  width: 80%;
+  max-width: 500px;
+  padding: 12px 20px;
+  border-radius: 25px;
+  border: 1px solid var(--primary);
+  background: rgba(0,0,0,0.8);
+  color: white;
+  outline: none;
+  box-shadow: var(--glow);
+}
+
+/* Vertical Grid Layout */
+.grid {
+  display: flex;
+  flex-direction: column; /* Items one below another */
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+}
+
+.card {
+  background: var(--bg-glass);
+  padding: 15px 25px;
   border-radius: 12px;
-  margin-bottom: 15px;
+  width: 90%;
+  max-width: 600px;
+  cursor: pointer;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  transition: all 0.3s;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #222;
-  transition: 0.3s ease;
+  backdrop-filter: blur(5px);
 }
 
-.script-card:hover {
-  border-color: var(--neon);
-  transform: scale(1.02);
-  box-shadow: 0 5px 20px rgba(0, 255, 255, 0.2);
+.card:hover {
+  border-color: var(--primary);
+  box-shadow: var(--glow);
+  transform: translateX(10px);
 }
 
-.run-btn {
-  background: var(--neon);
-  color: #000;
-  border: none;
-  padding: 6px 15px;
-  border-radius: 4px;
+.card::after {
+  content: '→';
   font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 0 10px var(--neon);
 }
 
-/* --- TERMINAL --- */
-#terminal {
-  display: none;
-  background: #000;
-  border: 2px solid var(--neon);
-  border-radius: 10px;
+#output-container {
+  max-width: 800px;
+  margin: 20px auto;
+  width: 90%;
+}
+
+#output {
+  background: rgba(0,0,0,0.9);
   padding: 20px;
-  margin-top: 20px;
-  box-shadow: 0 0 20px var(--neon-glow);
+  border-radius: 15px;
+  border: 1px solid var(--primary);
+  white-space: pre-wrap;
+  min-height: 50px;
 }
 
-.term-text { color: #0f0; font-family: 'Consolas', monospace; word-break: break-all; }
+.line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(0,255,255,0.1);
+  padding-bottom: 4px;
+}
 
-.copy-btn {
-  background: transparent;
-  color: var(--neon);
-  border: 1px solid var(--neon);
-  padding: 5px 12px;
+.copy {
+  background: var(--primary);
+  color: black;
+  border: none;
   border-radius: 4px;
-  margin-left: 10px;
+  padding: 4px 10px;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 10px;
 }
 
-.copy-btn:active { background: var(--neon); color: #000; }
+.copy:active { transform: scale(0.9); }
 
+.guide, .website {
+  color: #fff;
+  background: rgba(0,255,255,0.2);
+  padding: 8px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 15px;
+  border: 1px solid var(--primary);
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: var(--bg-glass);
+  margin-top: auto;
+}
+
+@media (max-width: 600px) {
+  .main-content { margin-left: 60px; width: calc(100% - 60px); }
+  .sidebar { width: 60px; }
+  header h1 { font-size: 1.2rem; }
+}
 </style>
 </head>
 
 <body>
 
-<div class="sidebar" id="sidebar">
-  <div class="logo">SDGAMER</div>
-  <div class="nav-item active">⚡ DASHBOARD</div>
-  <div class="nav-item" onclick="location.reload()">🔄 REFRESH</div>
-  <div class="nav-item" onclick="alert('Join Telegram for updates!')">📢 UPDATES</div>
-  
-  <div style="margin-top:auto; text-align:center; font-size:12px; color:#444;">
-    <p>POWERED BY SDGAMER</p>
-  </div>
+<div class="sidebar">
+  <a href="https://www.youtube.com/@skahosting" target="_blank" title="YouTube">
+    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+  </a>
+  <a href="https://discord.gg/UqfbtuURca" target="_blank" title="Discord">
+    <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord">
+  </a>
 </div>
 
-<div class="main">
-  <div class="mobile-header">
-    <button class="menu-btn" onclick="toggleMenu()">MENU</button>
-    <div class="logo" style="margin:0; font-size:1.2rem;">SDGAMER</div>
+<div class="main-content">
+  <header>
+    <h1>SKA HOSTING NETWORK</h1>
+  </header>
+
+  <div class="search">
+    <input id="search" placeholder="🔍 Search panels (e.g. Pterodactyl, Xrdp)..." onkeyup="filterCards()">
   </div>
 
-  <div class="stats-container">
-    <div class="stat-card"><small>STATUS</small><br><b>LIVE</b></div>
-    <div class="stat-card"><small>SPEED</small><br><b>FAST</b></div>
-    <div class="stat-card"><small>SECURE</small><br><b>YES</b></div>
+  <div class="grid" id="cards"></div>
+
+  <div id="output-container">
+    <div id="output">Click a panel above to see commands...</div>
   </div>
 
-  <input type="text" id="srch" class="search-bar" placeholder="Search for a script..." onkeyup="filter()">
-
-  <div id="scriptList"></div>
-
-  <div id="terminal">
-    <div style="display:flex; justify-content:space-between; margin-bottom:15px; border-bottom:1px solid #222; padding-bottom:5px;">
-      <span style="color:var(--neon)">SYSTEM@SDGAMER:~#</span>
-      <span style="color:red; cursor:pointer;" onclick="this.parentElement.parentElement.style.display='none'">[X]</span>
-    </div>
-    <div id="termContent" class="term-text"></div>
-  </div>
-
-  <footer style="margin:50px 0; text-align:center; color:#555; font-size:12px;">
-    CREDITS: SDGAMER • JISHNU • HOPING • NOBITA • MYHIM
+  <footer>
+    Credits: SDGAMER • Jishnu Bhi • Hoping Boyz • Nobita Hosting • Myhim Bhi
   </footer>
 </div>
 
 <script>
-const scripts = [
-  { n: "🚀 Pterodactyl Extra (No SFTP)", c: "bash <(curl -fsSL https://raw.githubusercontent.com/sdgamer8263-sketch/pterodactyl_extention/main/install.sh)" },
-  { n: "🖥️ XRDp Debian (Install+Setup)", c: "curl -fsSL https://raw.githubusercontent.com/sdgamer8263-sketch/rdp2/main/install.sh | sudo bash" },
-  { n: "🖥️ XRDp Ubuntu (Install+Setup)", c: "curl -fsSL https://raw.githubusercontent.com/sdgamer8263-sketch/Rdp/main/install.sh | sudo bash" },
-  { n: "🛠️ Hydra Dashboard", c: "bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/dashboard/refs/heads/main/dash)" },
-  { n: "📦 Skyport Panel", c: "bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/panel)" },
-  { n: "🔗 Air Link Panel", c: "bash <(curl -s https://airlink.jishnu.fun)" },
-  { n: "24/7 Making Code", c: "python3 <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/24-7/refs/heads/main/24)" }
+const typingSpeed = 25;
+
+const panels=[
+{
+  name:"Pterodactyl Extra Extentions (No SFTP)",
+  text:`bash <(curl -fsSL https://raw.githubusercontent.com/sdgamer8263-sketch/pterodactyl_extention/main/install.sh)`,
+  link: "https://www.youtube.com/@skahosting"
+},
+{
+  name:"Xrdp (Install+Setup) For Debian",
+  text:`curl -fsSL https://raw.githubusercontent.com/sdgamer8263-sketch/rdp2/main/install.sh | sudo bash`,
+  link: "https://www.youtube.com/@skahosting"
+},
+{
+  name:"Xrdp (Install+Setup) For Ubuntu",
+  text:`curl -fsSL https://raw.githubusercontent.com/sdgamer8263-sketch/Rdp/main/install.sh | sudo bash`,
+  link: "https://www.youtube.com/@skahosting"
+},
+{
+name:"Hydra Dashboard",
+text:`Hydra Dashboard
+
+dash+panel install:
+1. sudo su
+2. bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/dashboard/refs/heads/main/dash)
+
+Node install:
+1. git clone https://github.com/hydralabs-beta/daemon.git
+2. cd daemon
+3. npm i
+4. paste your node configure
+5. pm2 start .`,
+link:"https://youtu.be/iYV1f5FGdqU?si=6fkYy28yjDAyZg4C"
+},
+{
+name:"Skyport Panel",
+text:`skyport panel
+
+PANEL INSTALL:
+1) sudo su
+2) bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/panel)
+
+WINGS/NODE INSTALL:
+1) sudo su
+2) bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/wings)`,
+link:"https://youtu.be/wDGOeEu6tuI"
+},
+{
+name:"Air Link Panel",
+text:`bash <(curl -s https://airlink.jishnu.fun)`,
+link:"https://youtu.be/0O6FZEBs1D0"
+}
+// ... Baaki purane panels yahan add kiye ja sakte hain
 ];
 
-const list = document.getElementById('scriptList');
-
-function toggleMenu() {
-  document.getElementById('sidebar').classList.toggle('active');
-}
-
-scripts.forEach(s => {
-  const d = document.createElement('div');
-  d.className = 'script-card';
-  d.innerHTML = `<span>${s.n}</span><button class="run-btn">RUN</button>`;
-  d.onclick = () => {
-    document.getElementById('sidebar').classList.remove('active');
-    run(s.c);
-  };
-  list.appendChild(d);
+const cards=document.getElementById("cards");
+panels.forEach(p=>{
+  const d=document.createElement("div");
+  d.className="card";
+  d.innerHTML = `<span>${p.name}</span>`;
+  d.onclick=()=>show(p);
+  cards.appendChild(d);
 });
 
-function run(cmd) {
-  const term = document.getElementById('terminal');
-  const cont = document.getElementById('termContent');
-  term.style.display = 'block';
-  cont.innerHTML = '';
-  term.scrollIntoView({ behavior: 'smooth' });
+function show(data){
+  const out=document.getElementById("output");
+  out.innerHTML="";
+  let lines=data.text.split("\n");
+  let li=0, ci=0;
+  let span, row, copyBtn;
 
-  let i = 0;
-  let line = document.createElement('div');
-  line.style.display = 'flex';
-  line.style.justifyContent = 'space-between';
-  
-  let txt = document.createElement('span');
-  let btn = document.createElement('button');
-  btn.className = 'copy-btn';
-  btn.innerText = 'COPY';
-  btn.onclick = (e) => {
-    e.stopPropagation();
-    navigator.clipboard.writeText(cmd);
-    btn.innerText = 'COPIED!';
-    setTimeout(() => btn.innerText = 'COPY', 2000);
-  };
+  function type(){
+    if(li>=lines.length){
+      if(data.link){
+        const l=document.createElement("div");
+        l.className="guide";
+        l.innerText="▶ Watch Tutorial";
+        l.onclick=()=>window.open(data.link,"_blank");
+        out.appendChild(l);
+      }
+      return;
+    }
 
-  line.appendChild(txt);
-  line.appendChild(btn);
-  cont.appendChild(line);
+    if(ci===0){
+      row=document.createElement("div");
+      row.className="line";
+      span=document.createElement("span");
+      copyBtn=document.createElement("button");
+      copyBtn.className="copy";
+      copyBtn.innerText="COPY";
+      copyBtn.onclick=()=> {
+        navigator.clipboard.writeText(lines[li]);
+        copyBtn.innerText = "DONE!";
+        setTimeout(()=> copyBtn.innerText="COPY", 1000);
+      };
 
-  function type() {
-    if (i < cmd.length) {
-      txt.textContent += cmd.charAt(i);
-      i++;
-      setTimeout(type, 20);
+      if(lines[li].trim()==="") copyBtn.style.display="none";
+      row.appendChild(span);
+      row.appendChild(copyBtn);
+      out.appendChild(row);
+    }
+
+    if(ci < lines[li].length){
+      span.textContent += lines[li][ci++];
+      setTimeout(type, typingSpeed);
+    }else{
+      li++; ci=0;
+      setTimeout(type, typingSpeed);
     }
   }
   type();
 }
 
-function filter() {
-  let v = document.getElementById('srch').value.toLowerCase();
-  document.querySelectorAll('.script-card').forEach(c => {
-    c.style.display = c.innerText.toLowerCase().includes(v) ? 'flex' : 'none';
+function filterCards(){
+  const v=document.getElementById("search").value.toLowerCase();
+  document.querySelectorAll(".card").forEach(c=>{
+    c.style.display=c.innerText.toLowerCase().includes(v)?"flex":"none";
   });
 }
 </script>
