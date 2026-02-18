@@ -210,6 +210,23 @@ footer {
 const typingSpeed = 15;
 
 const panels = [
+ {
+    name:"Xrdp + Firebase (Install + setup)[Every Debian VPS including IDX]"
+      text:`bash <(curl -s https://raw.githubusercontent.com/mahimxyzz/Vps/85b6e12c558f8befb318913c38c2e133f80d8ac9/cd/24_7.txt)`
+  }
+  {
+    name:"Pterodactyl Extention Install One Line Command with Sftp"
+      text:`
+      Upload your extention file (only ".blueprint") in "/var/www/pterodactyl/"
+
+      COMMAND:
+      cd /var/www/pterodactyl/
+      
+      PASTE THIS COMMAND:
+      
+      bash <(curl -fsSL https://raw.githubusercontent.com/hopingboyz/blueprint/main/addon-installer.sh)`
+  }
+  
   {
     name: "Pterodactyl Extra Extentions (No need to connect of SFTP)",
     text: `bash <(curl -fsSL https://raw.githubusercontent.com/sdgamer8263-sketch/pterodactyl_extention/main/install.sh)`,
@@ -226,13 +243,15 @@ const panels = [
     noLink: true
   },
   {
-    name: "Hydra Dashboard",
+    name: "Hydra Panel + Dashboard",
     text: `Panel install:
     
     sudo su
     
 bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/dashboard/refs/heads/main/dash)
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------
+
 Node install:
 
 git clone https://github.com/hydren-dev/HydraDAEMON
@@ -245,8 +264,7 @@ paste your configure of node
 
 node
 Again Start:
--------------------------------------------------------------------------------------------------------------------------
-
+------------------------------------------------------------
 1) cd oversee-fixed
 
 2) node.
@@ -256,44 +274,201 @@ create a new terminal (+)
 3) cd HydraDAEMON
 
 4) node
+
 `,
     link: "https://youtu.be/iYV1f5FGdqU?si=6fkYy28yjDAyZg4C"
   },
   {
     name: "Skyport Panel",
-    text: `sudo su
-bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/panel)
-bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/wings)
-cd skyportd
-pm2 start .`,
+    text: `                                              Skyport panel
+
+PANEL INSTALL:
+
+1) sudo su
+
+2) bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/panel)
+
+------------------------------------------------------
+
+WINGS/NODE INSTALL:
+
+1) sudo su
+
+2) bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/skyport/refs/heads/main/wings)
+
+3) cd skyportd
+
+4) paste your node configure
+
+5) pm2 start .                                          
+
+------------------------------------------------------
+
+                                   panel relaunch 
+
+1) pm2 start index
+
+2) pm2 start skyportd  
+
+`,
     link: "https://youtu.be/wDGOeEu6tuI"
   },
   {
-    name: "Puffer Panel Setup",
-    text: `sudo su
-apt update && apt upgrade
-docker volume create pufferpanel-config
-docker start pufferpanel
-docker exec -it pufferpanel /pufferpanel/pufferpanel user add`,
+    name: "Puffer Panel Setup ",
+    text: `      Puffer Panel
+------------------------------------------------------      
+sudo su
+
+
+apt update
+
+apt upgrade
+
+$ mkdir -p /var/lib/pufferpanel
+
+$ docker volume create pufferpanel-config
+
+$ docker create --name pufferpanel -p 8080:8080 -p 5657:5657 -v pufferpanel-config:/etc/pufferpanel -v /var/lib/pufferpanel:/var/lib/pufferpanel -v /var/run/docker.sock:/var/run/docker.sock --restart=on-failure pufferpanel/pufferpanel:latest
+
+$ docker start pufferpanel
+
+$ docker exec -it pufferpanel /pufferpanel/pufferpanel user add 
+
+------------------------------------------------------
+Again start your panel
+      
+docker start pufferpanel  
+
+  `,
     link: "https://youtube.com/playlist?list=PLlqZTveCNnL6zTve1jmD-XlxzNsZzzzHk"
   },
   {
+    name:"Puffer Panel 2"
+      text:`       Install puffer panel 2 
+
+1) bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/puffer-panel/refs/heads/main/install)
+
+------------------------------------------------------
+
+   Admin user create & start
+
+1) sudo pufferpanel user add
+
+2) sudo systemctl enable --now pufferpanel  
+
+`
+  link: "https://youtu.be/wDGOeEu6tuI"
+  }
+  {
+    name:"Pterodactyl Panel (Manually)"
+      text:`                    Ifconfig install:
+
+1) sudo apt install net-tools
+
+2) sudo apt install ssh
+
+------------------------------------------------------
+
+                      Pterodactyl panel:
+1) sudo su 
+
+2) bash <(curl -s https://pterodactyl-installer.se) 
+
+------------------------------------------------------
+
+                       Start wings:
+                       
+1) systemctl start wings                                           
+
+------------------------------------------------------
+
+                               Theme install
+
+bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/ptero-theme/refs/heads/main/install) 
+
+------------------------------------------------------
+
+//Atention ❗❗
+
+  After watching this video, you must watch "Pterodactyl Error Fix Video"
+  
+    
+`}
+
+    link:"https://youtu.be/9SPDr8Rdysg?si=yfYXp2hlJj8iglc1"
+  }
+  {
+    name:"Pterodactyl Error Fix Video"
+      link:"https://youtu.be/04xvIA4VHwI"
+  }
+  
+  {
     name: "Air Link Panel",
-    text: `bash <(curl -s https://airlink.jishnu.fun)`,
+    text: `bash <(curl -s https://airlink.jishnu.fun)
+    
+    `,
     link: "https://youtu.be/0O6FZEBs1D0"
   },
   {
+    name:"Pterodactyl Panel (One Line Installing Cmd)"
+      text:`1) bash <(curl -s https://vps1.jishnu.fun)
+      
+      2) bash <(curl -s https://ptero.jishnu.fun) `
+  
+  link:"https://youtu.be/SwQdKODDNRY?si=JRytpxcnnScMd0Gs"
+  }
+  
+  {
     name: "Draco Panel",
-    text: `bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/jishnu)
-bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/node)
-cd panel && node .`,
+    text:`                  Install the jtg-panel
+
+1) sudo su
+
+2) bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/jishnu)
+------------------------------------------------------
+
+                       Install the node
+
+1) bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/node) 
+
+2) cd node
+
+3) paste your configure of node
+
+4) node . 
+
+------------------------------------------------------
+
+         Again start your panel
+
+1) cd panel
+
+2) node .
+
+------------------------------------------------------
+   Again start node
+
+1) create a new terminal
+
+2) cd node
+
+3) node . 
+
+`,
     link: "https://youtu.be/H_p9r-j_xv0"
   },
   {
-    name: "24/7 Making Code",
-    text: `python3 <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/24-7/refs/heads/main/24)`,
-    noLink: true
+    name: "24/7 Making Code (IDX,codesandbox)",
+    text: `
+    python3 <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/24-7/refs/heads/main/24)
+    
+    phython3
+    
+    `,
+    
+  noLink: true
   }
+  
 ];
 
 const cardsBox = document.getElementById("cards");
