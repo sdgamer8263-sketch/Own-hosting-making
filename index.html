@@ -213,7 +213,7 @@ const panels = [
  {
     name:"Xrdp + Firebase (Install + setup)[Every Debian VPS including IDX]",
       text:`bash <(curl -s https://raw.githubusercontent.com/mahimxyzz/Vps/85b6e12c558f8befb318913c38c2e133f80d8ac9/cd/24_7.txt)`,
- nolink: true
+ noLink: true
  },
   {
     name:"Pterodactyl Extention Install One Line Command with Sftp",
@@ -226,7 +226,7 @@ const panels = [
       PASTE THIS COMMAND:
       
       bash <(curl -fsSL https://raw.githubusercontent.com/hopingboyz/blueprint/main/addon-installer.sh)`,
-    nolink:true
+    noLink:true
   },
   
   {
@@ -358,11 +358,11 @@ docker start pufferpanel
 
 2) sudo systemctl enable --now pufferpanel  
 
-`
+`,
   link: "https://youtu.be/wDGOeEu6tuI"
-  }
+  },
   {
-    name:"Pterodactyl Panel (Manually)"
+    name:"Pterodactyl Panel (Manually)",
       text:`                    Ifconfig install:
 
 1) sudo apt install net-tools
@@ -400,9 +400,15 @@ bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/ptero-theme/refs
     link:"https://youtu.be/9SPDr8Rdysg?si=yfYXp2hlJj8iglc1"
   },
   {
-    name:"Pterodactyl Error Fix Video"
-      link:"https://youtu.be/04xvIA4VHwI"
-  }
+    {
+  name:"Pterodactyl Error Fix Video",
+  text:"Watch the guide video below"
+    
+    ,
+
+    
+  link:"https://youtu.be/04xvIA4VHwI"
+}
   
   {
     name: "Air Link Panel",
@@ -464,7 +470,7 @@ bash <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/ptero-theme/refs
     text: `
     python3 <(curl -s https://raw.githubusercontent.com/JishnuTheGamer/24-7/refs/heads/main/24)
     
-    phython3
+    python3
     
     `,
     
